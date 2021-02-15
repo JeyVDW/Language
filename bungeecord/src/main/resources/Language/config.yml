@@ -1,0 +1,15 @@
+#  /$$      /$$ /$$                      /$$$$$$                  /$$
+# | $$$    /$$$|__/                     /$$__  $$                | $$
+# | $$$$  /$$$$ /$$ /$$$$$$$   /$$$$$$ | $$  \__/  /$$$$$$   /$$$$$$$  /$$$$$$
+# | $$ $$/$$ $$| $$| $$__  $$ /$$__  $$| $$       /$$__  $$ /$$__  $$ /$$__  $$
+# | $$  $$$| $$| $$| $$  \ $$| $$$$$$$$| $$      | $$  \ $$| $$  | $$| $$$$$$$$
+# | $$\  $ | $$| $$| $$  | $$| $$_____/| $$    $$| $$  | $$| $$  | $$| $$_____/
+# | $$ \/  | $$| $$| $$  | $$|  $$$$$$$|  $$$$$$/|  $$$$$$/|  $$$$$$$|  $$$$$$$
+# |__/     |__/|__/|__/  |__/ \_______/ \______/  \______/  \_______/ \_______/
+
+# if true: the player is opened a gui to choose the language
+# if false: the player is sent a message to click on the language he/she want to choose
+usingGUI: false
+
+# if a player joins for first time, he/she is opened the language change inventory
+forceOpenInventory: false

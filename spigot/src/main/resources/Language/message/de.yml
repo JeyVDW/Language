@@ -1,0 +1,33 @@
+#  /$$      /$$ /$$                      /$$$$$$                  /$$
+# | $$$    /$$$|__/                     /$$__  $$                | $$
+# | $$$$  /$$$$ /$$ /$$$$$$$   /$$$$$$ | $$  \__/  /$$$$$$   /$$$$$$$  /$$$$$$
+# | $$ $$/$$ $$| $$| $$__  $$ /$$__  $$| $$       /$$__  $$ /$$__  $$ /$$__  $$
+# | $$  $$$| $$| $$| $$  \ $$| $$$$$$$$| $$      | $$  \ $$| $$  | $$| $$$$$$$$
+# | $$\  $ | $$| $$| $$  | $$| $$_____/| $$    $$| $$  | $$| $$  | $$| $$_____/
+# | $$ \/  | $$| $$| $$  | $$|  $$$$$$$|  $$$$$$/|  $$$$$$/|  $$$$$$$|  $$$$$$$
+# |__/     |__/|__/|__/  |__/ \_______/ \______/  \______/  \_______/ \_______/
+
+noPermission: "&cLanguage &8» &7Dazu hast du keine Rechte"
+noPlayer: "&cLanguage &8» &7Dies kannst du nur als Spieler"
+playerNotOnline: "&cLanguage &8» &7Der Spieler &b%targetName% &7ist nicht online"
+playerNotExists: "&cLanguage &8» &7Der Spieler &b%arg-1% &7existiert nicht"
+noValidIsocode: "&cLanguage &8» &7Bitte gib einen gültigen Isocode an"
+syntax: "&9Language &8» &7Du kannst die folgenden Befehle ausführen:"
+
+language:
+  command:
+    syntax:
+      choose: "&8- &6/language &8- &7Wähle deine Sprache aus"
+      set: "&8- &6/language [Isocode] &8- &7Stelle deine Sprache ein"
+    change: "&aLanguage &8» &7Du hast deine Sprache von &e%oldLanguageDisplayname% &7zu &6%languageDisplayname% &7geändert"
+    languageCollection: "&8- %languageDisplayname%"
+    languageSelection: "&9Language &8» &7Du kannst eine der folgenden Sprachen auswählen:"
+  gui:
+    title: "&5Sprache"
+    placeholderItem:
+      material: STAINED_GLASS_PANE
+      subID: 7
+      lore: [ ]
+      displayname: " "
+  hover:
+    text: "&7Klicke, um &6%languageDisplayname% &7auszuwählen"

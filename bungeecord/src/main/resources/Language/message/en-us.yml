@@ -1,0 +1,26 @@
+#  /$$      /$$ /$$                      /$$$$$$                  /$$
+# | $$$    /$$$|__/                     /$$__  $$                | $$
+# | $$$$  /$$$$ /$$ /$$$$$$$   /$$$$$$ | $$  \__/  /$$$$$$   /$$$$$$$  /$$$$$$
+# | $$ $$/$$ $$| $$| $$__  $$ /$$__  $$| $$       /$$__  $$ /$$__  $$ /$$__  $$
+# | $$  $$$| $$| $$| $$  \ $$| $$$$$$$$| $$      | $$  \ $$| $$  | $$| $$$$$$$$
+# | $$\  $ | $$| $$| $$  | $$| $$_____/| $$    $$| $$  | $$| $$  | $$| $$_____/
+# | $$ \/  | $$| $$| $$  | $$|  $$$$$$$|  $$$$$$/|  $$$$$$/|  $$$$$$$|  $$$$$$$
+# |__/     |__/|__/|__/  |__/ \_______/ \______/  \______/  \_______/ \_______/
+
+noPermission: "&cLanguage &8» &7You have no permissions to do this"
+noPlayer: "&cLanguage &8» &7You can only do this as a player"
+playerNotOnline: "&cLanguage &8» &7The player &b%targetName% &7is not online"
+playerNotExists: "&cLanguage &8» &7The player &b%arg-1% &7does not exist"
+noValidIsocode: "&cLanguage &8» &7Please enter a valid isocode"
+syntax: "&9Language &8» &7You can run the following commands:"
+
+language:
+  command:
+    syntax:
+      choose: "&8- &6/language &8- &7Choose a language"
+      set: "&8- &6/language [Isocode] &8- &7Set your language"
+    change: "&aLanguage &8» &7You have changed your language from &e%oldLanguageDisplayname% &7to &6%languageDisplayname%"
+    languageCollection: "&8- %languageDisplayname%"
+    languageSelection: "&9Language &8» &7You can choose one of the following languages:"
+  hover:
+    text: "&7Click to choose &6%languageDisplayname%"

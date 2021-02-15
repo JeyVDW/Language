@@ -1,0 +1,23 @@
+name: Language
+prefix: LS
+description: A plugin to manage the language
+
+main: dev.minecode.language.spigot.LanguageSpigot
+version: 0.1.0-Pre.1
+api-version: 1.8.8
+
+author: MineCode
+authors:
+  - Jerome
+  - Leonard
+website: http://minecode.dev
+
+commands:
+  language:
+    description: A managing language-command
+    aliases: [ ]
+    usage: /language
+
+permissions:
+  language.use:
+    description: Access to the command "/language"
