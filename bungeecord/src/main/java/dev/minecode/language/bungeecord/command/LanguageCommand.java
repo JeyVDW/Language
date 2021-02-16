@@ -4,6 +4,7 @@ import dev.minecode.core.api.CoreAPI;
 import dev.minecode.core.api.object.CorePlayer;
 import dev.minecode.core.api.object.Language;
 import dev.minecode.language.api.LanguageAPI;
+import dev.minecode.language.bungeecord.helper.PluginMessageHelper;
 import dev.minecode.language.bungeecord.object.LanguageLanguageBungeeCord;
 import net.md_5.bungee.api.CommandSender;
 import net.md_5.bungee.api.chat.BaseComponent;
@@ -13,16 +14,12 @@ import net.md_5.bungee.api.connection.ProxiedPlayer;
 import net.md_5.bungee.api.plugin.Command;
 import net.md_5.bungee.api.plugin.TabExecutor;
 
-import java.io.ByteArrayOutputStream;
-import java.io.DataOutputStream;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
 public class LanguageCommand extends Command implements TabExecutor {
-
     public LanguageCommand(String name) {
         super(name);
     }
@@ -49,16 +46,7 @@ public class LanguageCommand extends Command implements TabExecutor {
             }
 
             if (LanguageAPI.getInstance().isUsingGUI()) {
-                ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
-                DataOutputStream dataOutputStream = new DataOutputStream(byteArrayOutputStream);
-
-                try {
-                    dataOutputStream.writeUTF("Language");
-                    dataOutputStream.writeUTF("OpenLanguageChangeGUI");
-                } catch (IOException ignored) {
-                }
-
-                ((ProxiedPlayer) commandSender).sendData("MineCode", byteArrayOutputStream.toByteArray());
+                PluginMessageHelper.openLanguageChangeGUI((ProxiedPlayer) commandSender);
                 return;
             }
 

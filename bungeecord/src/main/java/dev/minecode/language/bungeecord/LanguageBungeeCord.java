@@ -9,9 +9,6 @@ import net.md_5.bungee.api.plugin.Plugin;
 public class LanguageBungeeCord extends Plugin {
     private static LanguageBungeeCord instance;
 
-    private CoreBungeeCord coreBungeeCord;
-    private LanguageCommon languageCommon;
-
     public static LanguageBungeeCord getInstance() {
         return instance;
     }
@@ -24,14 +21,15 @@ public class LanguageBungeeCord extends Plugin {
         registerChannels();
     }
 
-    private void makeInstances() {
-        instance = this;
-        coreBungeeCord = new CoreBungeeCord(this);
-        languageCommon = new LanguageCommon();
-    }
-
+    @Override
     public void onDisable() {
         CoreBungeeCord.getInstance().onDisable();
+    }
+
+    private void makeInstances() {
+        instance = this;
+        new CoreBungeeCord(this);
+        new LanguageCommon();
     }
 
     private void registerCommands() {
@@ -39,7 +37,7 @@ public class LanguageBungeeCord extends Plugin {
     }
 
     private void registerListeners() {
-        new PlayerListener();
+        getProxy().getPluginManager().registerListener(this, new PlayerListener());
     }
 
     private void registerChannels() {

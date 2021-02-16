@@ -15,6 +15,10 @@
         <module>bungeecord</module>
     </modules>
 
+    <name>Language</name>
+    <description>A plugin to manage the language</description>
+    <url>https://github.com/MineCodeDEV/Language</url>
+
     <properties>
         <maven.compiler.source>8</maven.compiler.source>
         <maven.compiler.target>8</maven.compiler.target>

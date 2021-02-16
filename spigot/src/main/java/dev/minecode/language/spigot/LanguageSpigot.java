@@ -15,8 +15,6 @@ public class LanguageSpigot extends JavaPlugin {
 
     private static LanguageSpigot instance;
 
-    private CoreSpigot coreSpigot;
-    private LanguageCommon languageCommon;
     private InventoryManager inventoryManager;
 
     public static LanguageSpigot getInstance() {
@@ -31,25 +29,26 @@ public class LanguageSpigot extends JavaPlugin {
         registerChannels();
     }
 
-    private void makeInstances() {
-        instance = this;
-        coreSpigot = new CoreSpigot(this);
-        languageCommon = new LanguageCommon();
-        inventoryManager = new InventoryManager();
-    }
-
+    @Override
     public void onDisable() {
         if (CoreAPI.getInstance().isUsingSQL())
             CoreAPI.getInstance().getDatabaseManager().disconnect();
     }
 
+    private void makeInstances() {
+        instance = this;
+        new CoreSpigot(this);
+        new LanguageCommon();
+        inventoryManager = new InventoryManager();
+    }
+
     private void registerCommands() {
-        new LanguageCommand();
+        new LanguageCommand(getCommand("language"));
     }
 
     private void registerListeners() {
-        new InventoryListener();
-        new PlayerListener();
+        Bukkit.getPluginManager().registerEvents(new InventoryListener(), this);
+        Bukkit.getPluginManager().registerEvents(new PlayerListener(), this);
     }
 
     private void registerChannels() {

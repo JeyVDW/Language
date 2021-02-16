@@ -17,8 +17,7 @@ import java.util.List;
 
 public class LanguageCommand implements CommandExecutor, TabCompleter {
 
-    public LanguageCommand() {
-        PluginCommand pluginCommand = LanguageSpigot.getInstance().getCommand("language");
+    public LanguageCommand(PluginCommand pluginCommand) {
         pluginCommand.setExecutor(this);
         pluginCommand.setTabCompleter(this);
     }

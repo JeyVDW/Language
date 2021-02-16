@@ -10,27 +10,19 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
 
 public class PlayerListener implements Listener {
-
-    public PlayerListener() {
-        Bukkit.getPluginManager().registerEvents(this, LanguageSpigot.getInstance());
-    }
-
     @EventHandler
     public void handlePlayerJoin(PlayerJoinEvent event) {
         Player player = event.getPlayer();
 
-        if (LanguageAPI.getInstance().isUsingGUI()) {
-            if (LanguageAPI.getInstance().isForceOpenInventory()) {
-                if (CoreAPI.getInstance().getCorePlayer(player.getUniqueId()).getLanguage() == null) {
-                    Bukkit.getScheduler().runTaskLater(LanguageSpigot.getInstance(), new Runnable() {
-                        @Override
-                        public void run() {
-                            player.openInventory(LanguageSpigot.getInstance().getInventoryManager().getLanguageInventory().get(CoreAPI.getInstance().getDefaultLanguage()));
-                        }
-                    }, 10);
-                }
+        if (LanguageAPI.getInstance().isForceOpenInventory()) {
+            if (CoreAPI.getInstance().getCorePlayer(player.getUniqueId()).getLanguage() == null) {
+                Bukkit.getScheduler().runTaskLater(LanguageSpigot.getInstance(), new Runnable() {
+                    @Override
+                    public void run() {
+                        player.openInventory(LanguageSpigot.getInstance().getInventoryManager().getLanguageInventory().get(CoreAPI.getInstance().getDefaultLanguage()));
+                    }
+                }, 10);
             }
         }
     }
-
 }
