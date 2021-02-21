@@ -15,6 +15,7 @@ public class PluginMessageHelper {
         try {
             dataOutputStream.writeUTF("Language");
             dataOutputStream.writeUTF("OpenLanguageChangeGUI");
+            dataOutputStream.writeUTF(proxiedPlayer.getUniqueId().toString());
         } catch (IOException e) {
             e.printStackTrace();
         }
