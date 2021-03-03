@@ -31,7 +31,7 @@ public class LanguageSpigot extends JavaPlugin {
 
     @Override
     public void onDisable() {
-        if (CoreAPI.getInstance().isUsingSQL())
+        if (CoreAPI.getInstance().getPluginManager().isUsingSQL())
             CoreAPI.getInstance().getDatabaseManager().disconnect();
     }
 

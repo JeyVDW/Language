@@ -18,7 +18,7 @@ public class PlayerListener implements Listener {
         ProxiedPlayer proxiedPlayer = event.getPlayer();
 
         if (LanguageAPI.getInstance().isForceOpenInventory()) {
-            if (CoreAPI.getInstance().getCorePlayer(proxiedPlayer.getUniqueId()).getLanguage() == null) {
+            if (CoreAPI.getInstance().getPlayerManager().getCorePlayer(proxiedPlayer.getUniqueId()).getLanguage() == null) {
                 ProxyServer.getInstance().getScheduler().schedule(LanguageBungeeCord.getInstance(), new Runnable() {
                     @Override
                     public void run() {

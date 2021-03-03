@@ -12,7 +12,7 @@ public class FileManagerProvider implements FileManager {
     }
 
     private void makeInstances() {
-        config = CoreAPI.getInstance().getFileObject("config.yml", CoreAPI.getInstance().getPluginName());
+        config = CoreAPI.getInstance().getFileManager().getFileObject("config.yml", CoreAPI.getInstance().getPluginManager().getPluginName());
     }
 
     @Override

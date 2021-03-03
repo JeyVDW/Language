@@ -30,7 +30,7 @@ public class LanguageCommand extends Command implements TabExecutor {
 
     @Override
     public void execute(CommandSender commandSender, String[] args) {
-        CorePlayer coreExecuter = CoreAPI.getInstance().getCorePlayer(commandSender.getName());
+        CorePlayer coreExecuter = CoreAPI.getInstance().getPlayerManager().getCorePlayer(commandSender.getName());
 
         if (!commandSender.hasPermission("language.use")) {
             commandSender.sendMessage(CoreAPI.getInstance().getReplaceManager(coreExecuter.getLanguage(), LanguageLanguageBungeeCord.noPermission)
@@ -54,9 +54,9 @@ public class LanguageCommand extends Command implements TabExecutor {
 
             String repeat = CoreAPI.getInstance().getReplaceManager(coreExecuter.getLanguage(), LanguageLanguageBungeeCord.languageCommandLanguageCollection).chatcolorAll().getMessage();
             String isocode;
-            for (Language language : CoreAPI.getInstance().getLanguages()) {
+            for (Language language : CoreAPI.getInstance().getLanguageManager().getAllLanguages()) {
                 isocode = language.getIsocode();
-                BaseComponent[] b = CoreAPI.getInstance().getReplaceManager(repeat).language(CoreAPI.getInstance().getLanguage(isocode), "language").chatcolorAll().getBaseMessage();
+                BaseComponent[] b = CoreAPI.getInstance().getReplaceManager(repeat).language(CoreAPI.getInstance().getLanguageManager().getLanguage(isocode), "language").chatcolorAll().getBaseMessage();
                 for (BaseComponent baseComponent : b) {
                     baseComponent.setClickEvent(
                             new ClickEvent(ClickEvent.Action.RUN_COMMAND, "/language " + isocode));
@@ -64,7 +64,7 @@ public class LanguageCommand extends Command implements TabExecutor {
                             new HoverEvent(
                                     HoverEvent.Action.SHOW_TEXT,
                                     CoreAPI.getInstance().getReplaceManager(coreExecuter.getLanguage(), LanguageLanguageBungeeCord.languageHoverText)
-                                            .language(CoreAPI.getInstance().getLanguage(isocode), "language")
+                                            .language(CoreAPI.getInstance().getLanguageManager().getLanguage(isocode), "language")
                                             .chatcolorAll().getBaseMessage()));
                 }
                 commandSender.sendMessage(b);
@@ -75,7 +75,7 @@ public class LanguageCommand extends Command implements TabExecutor {
         if (args.length == 1) {
             String isocode = args[0];
             Language language;
-            if ((language = CoreAPI.getInstance().getLanguage(isocode)) == null) {
+            if ((language = CoreAPI.getInstance().getLanguageManager().getLanguage(isocode)) == null) {
                 commandSender.sendMessage(CoreAPI.getInstance().getReplaceManager(coreExecuter.getLanguage(), LanguageLanguageBungeeCord.noValidIsocode)
                         .args("language", args, "arg").chatcolorAll().getBaseMessage());
                 return;
@@ -83,7 +83,7 @@ public class LanguageCommand extends Command implements TabExecutor {
 
             Language oldLanguage = coreExecuter.getLanguage();
             if (oldLanguage == null)
-                oldLanguage = CoreAPI.getInstance().getDefaultLanguage();
+                oldLanguage = CoreAPI.getInstance().getLanguageManager().getDefaultLanguage();
             coreExecuter.setLanguage(language);
             coreExecuter.save();
 
@@ -110,7 +110,7 @@ public class LanguageCommand extends Command implements TabExecutor {
         }
 
         if (args.length == 1) {
-            for (Language language : CoreAPI.getInstance().getLanguages()) {
+            for (Language language : CoreAPI.getInstance().getLanguageManager().getAllLanguages()) {
                 list.add(language.getIsocode());
             }
             search = args[0].toLowerCase();

@@ -26,11 +26,11 @@ public class PluginMessageListener implements org.bukkit.plugin.messaging.Plugin
                 if (identifier.equals("OpenLanguageChangeGUI")) {
                     String playerUUID = dataInputStream.readUTF();
                     Player player = Bukkit.getPlayer(UUID.fromString(playerUUID));
-                    CorePlayer corePlayer = CoreAPI.getInstance().getCorePlayer(player.getUniqueId());
+                    CorePlayer corePlayer = CoreAPI.getInstance().getPlayerManager().getCorePlayer(player.getUniqueId());
 
                     Language language = corePlayer.getLanguage();
                     if (language == null)
-                        language = CoreAPI.getInstance().getDefaultLanguage();
+                        language = CoreAPI.getInstance().getLanguageManager().getDefaultLanguage();
 
                     player.openInventory(LanguageSpigot.getInstance().getInventoryManager().getLanguageInventory().get(language));
                 }

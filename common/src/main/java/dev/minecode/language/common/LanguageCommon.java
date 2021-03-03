@@ -13,7 +13,7 @@ public class LanguageCommon {
 
         UpdateManager updateManager = CoreAPI.getInstance().getUpdateManager();
         if (updateManager.updateAvailable()) {
-            System.out.println("[" + CoreAPI.getInstance().getPluginName() + "] There is a newer Version available! You can download it at " + updateManager.getReleaseURL(updateManager.getMatchingRelease()));
+            System.out.println("[" + CoreAPI.getInstance().getPluginManager().getPluginName() + "] There is a newer Version available! You can download it at " + updateManager.getReleaseURL(updateManager.getMatchingRelease()));
         }
     }
 

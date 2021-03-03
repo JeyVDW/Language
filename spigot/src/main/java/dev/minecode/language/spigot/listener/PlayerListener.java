@@ -15,11 +15,11 @@ public class PlayerListener implements Listener {
         Player player = event.getPlayer();
 
         if (LanguageAPI.getInstance().isForceOpenInventory()) {
-            if (CoreAPI.getInstance().getCorePlayer(player.getUniqueId()).getLanguage() == null) {
+            if (CoreAPI.getInstance().getPlayerManager().getCorePlayer(player.getUniqueId()).getLanguage() == null) {
                 Bukkit.getScheduler().runTaskLater(LanguageSpigot.getInstance(), new Runnable() {
                     @Override
                     public void run() {
-                        player.openInventory(LanguageSpigot.getInstance().getInventoryManager().getLanguageInventory().get(CoreAPI.getInstance().getDefaultLanguage()));
+                        player.openInventory(LanguageSpigot.getInstance().getInventoryManager().getLanguageInventory().get(CoreAPI.getInstance().getLanguageManager().getDefaultLanguage()));
                     }
                 }, 10);
             }

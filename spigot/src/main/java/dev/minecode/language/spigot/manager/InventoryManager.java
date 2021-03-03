@@ -23,7 +23,7 @@ public class InventoryManager {
     public InventoryManager() {
         languageInventory = new HashMap<>();
         languageInventorySize = getLanguageInventorySize();
-        for (Language language : CoreAPI.getInstance().getLanguages()) {
+        for (Language language : CoreAPI.getInstance().getLanguageManager().getAllLanguages()) {
             languageInventory.put(language, createLanguageInventory(language));
 
         }
@@ -39,7 +39,7 @@ public class InventoryManager {
                     .setDisplayName(CoreAPI.getInstance().getReplaceManager(language, LanguageLanguageSpigot.languageGuiPlaceholderItemDisplayname).chatcolorAll().getMessage()).build());
         }
 
-        for (Language language2 : CoreAPI.getInstance().getLanguages()) {
+        for (Language language2 : CoreAPI.getInstance().getLanguageManager().getAllLanguages()) {
             String displayname = CoreAPI.getInstance().getReplaceManager(language2.getDisplayname())
                     .language(language2, "").chatcolorAll().getMessage();
             List<String> lore = new ArrayList<>();
@@ -56,7 +56,7 @@ public class InventoryManager {
 
     private int getLanguageInventorySize() {
         int highest = 9;
-        for (Language language : CoreAPI.getInstance().getLanguages()) {
+        for (Language language : CoreAPI.getInstance().getLanguageManager().getAllLanguages()) {
             int ici = language.getSlot();
             while (highest < ici) {
                 highest = highest + 9;

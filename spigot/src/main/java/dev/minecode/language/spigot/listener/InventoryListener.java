@@ -20,7 +20,7 @@ public class InventoryListener implements Listener {
         if (event.getClickedInventory() == null)
             return;
         Player player = (Player) event.getWhoClicked();
-        CorePlayer corePlayer = CoreAPI.getInstance().getCorePlayer(player.getUniqueId());
+        CorePlayer corePlayer = CoreAPI.getInstance().getPlayerManager().getCorePlayer(player.getUniqueId());
         Inventory inv = event.getClickedInventory();
         if (!inv.getTitle().equals(CoreAPI.getInstance().getReplaceManager(corePlayer.getLanguage(), LanguageLanguageSpigot.languageGuiTitle).chatcolorAll().getMessage()))
             return;
@@ -31,7 +31,7 @@ public class InventoryListener implements Listener {
             return;
         Language oldLanguage = corePlayer.getLanguage();
         if (oldLanguage == null)
-            oldLanguage = CoreAPI.getInstance().getDefaultLanguage();
+            oldLanguage = CoreAPI.getInstance().getLanguageManager().getDefaultLanguage();
         corePlayer.setLanguage(language);
         corePlayer.save();
         player.closeInventory();
@@ -44,7 +44,7 @@ public class InventoryListener implements Listener {
         ItemMeta itemMeta = itemStack.getItemMeta();
         if (itemStack.getType() != Material.SKULL_ITEM)
             return null;
-        for (Language language : CoreAPI.getInstance().getLanguages())
+        for (Language language : CoreAPI.getInstance().getLanguageManager().getAllLanguages())
             if (language.getTexture().equals(HeadUtil.getTexture(itemMeta)))
                 return language;
         return null;
