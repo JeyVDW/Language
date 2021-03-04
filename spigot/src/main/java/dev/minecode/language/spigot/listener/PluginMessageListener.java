@@ -29,8 +29,6 @@ public class PluginMessageListener implements org.bukkit.plugin.messaging.Plugin
                     CorePlayer corePlayer = CoreAPI.getInstance().getPlayerManager().getCorePlayer(player.getUniqueId());
 
                     Language language = corePlayer.getLanguage();
-                    if (language == null)
-                        language = CoreAPI.getInstance().getLanguageManager().getDefaultLanguage();
 
                     player.openInventory(LanguageSpigot.getInstance().getInventoryManager().getLanguageInventory().get(language));
                 }

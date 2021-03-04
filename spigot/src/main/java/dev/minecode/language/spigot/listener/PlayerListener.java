@@ -15,7 +15,7 @@ public class PlayerListener implements Listener {
         Player player = event.getPlayer();
 
         if (LanguageAPI.getInstance().isForceOpenInventory()) {
-            if (CoreAPI.getInstance().getPlayerManager().getCorePlayer(player.getUniqueId()).getLanguage() == null) {
+            if (CoreAPI.getInstance().getPlayerManager().getCorePlayer(player.getUniqueId()).isLanguageEmpty()) {
                 Bukkit.getScheduler().runTaskLater(LanguageSpigot.getInstance(), new Runnable() {
                     @Override
                     public void run() {

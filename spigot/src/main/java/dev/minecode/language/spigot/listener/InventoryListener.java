@@ -17,8 +17,7 @@ import org.bukkit.inventory.meta.ItemMeta;
 public class InventoryListener implements Listener {
     @EventHandler
     public void handleLanguageChange(InventoryClickEvent event) {
-        if (event.getClickedInventory() == null)
-            return;
+        if (event.getClickedInventory() == null) return;
         Player player = (Player) event.getWhoClicked();
         CorePlayer corePlayer = CoreAPI.getInstance().getPlayerManager().getCorePlayer(player.getUniqueId());
         Inventory inv = event.getClickedInventory();
@@ -30,8 +29,6 @@ public class InventoryListener implements Listener {
         if (language == null)
             return;
         Language oldLanguage = corePlayer.getLanguage();
-        if (oldLanguage == null)
-            oldLanguage = CoreAPI.getInstance().getLanguageManager().getDefaultLanguage();
         corePlayer.setLanguage(language);
         corePlayer.save();
         player.closeInventory();

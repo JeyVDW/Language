@@ -33,7 +33,7 @@
         <dependency>
             <groupId>dev.minecode.core</groupId>
             <artifactId>spigot</artifactId>
-            <version>0.1.0-Pre.45</version>
+            <version>0.1.0-Pre.48</version>
         </dependency>
 
         <!-- Spigot -->

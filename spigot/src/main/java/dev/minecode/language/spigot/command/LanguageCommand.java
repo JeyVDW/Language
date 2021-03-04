@@ -79,8 +79,6 @@ public class LanguageCommand implements CommandExecutor, TabCompleter {
             }
 
             Language oldLanguage = coreExecuter.getLanguage();
-            if (oldLanguage == null)
-                oldLanguage = CoreAPI.getInstance().getLanguageManager().getDefaultLanguage();
             coreExecuter.setLanguage(language);
             coreExecuter.save();
 
