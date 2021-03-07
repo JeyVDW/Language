@@ -15,7 +15,8 @@ website: http://minecode.dev
 commands:
   language:
     description: A managing language-command
-    aliases: [ ]
+    aliases:
+      - lang
     usage: /language
 
 permissions:

@@ -33,7 +33,7 @@ public class LanguageBungeeCord extends Plugin {
     }
 
     private void registerCommands() {
-        getProxy().getPluginManager().registerCommand(this, new LanguageCommand("language"));
+        getProxy().getPluginManager().registerCommand(this, new LanguageCommand("language", null, "lang"));
     }
 
     private void registerListeners() {
