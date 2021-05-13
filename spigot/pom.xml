@@ -33,58 +33,16 @@
         <dependency>
             <groupId>dev.minecode.core</groupId>
             <artifactId>spigot</artifactId>
-            <version>0.1.0-Pre.48</version>
+            <version>0.1.0-Pre.57</version>
         </dependency>
 
         <!-- Spigot -->
         <dependency>
             <groupId>org.spigotmc</groupId>
-            <artifactId>spigot-api</artifactId>
-            <version>1.8.8-R0.1-SNAPSHOT</version>
-            <scope>provided</scope>
-            <exclusions>
-                <exclusion>
-                    <groupId>org.yaml</groupId>
-                    <artifactId>snakeyaml</artifactId>
-                </exclusion>
-                <exclusion>
-                    <groupId>com.google.code.gson</groupId>
-                    <artifactId>gson</artifactId>
-                </exclusion>
-                <exclusion>
-                    <groupId>com.google.guava</groupId>
-                    <artifactId>guava</artifactId>
-                </exclusion>
-                <exclusion>
-                    <groupId>net.md-5</groupId>
-                    <artifactId>bungeecord-chat</artifactId>
-                </exclusion>
-            </exclusions>
-        </dependency>
-        <dependency>
-            <groupId>org.spigotmc</groupId>
             <artifactId>spigot</artifactId>
-            <version>1.8.8-R0.1-SNAPSHOT</version>
+            <version>1.16.5-R0.1-SNAPSHOT</version>
             <scope>system</scope>
-            <systemPath>${basedir}/lib/spigot-1.8.8.jar</systemPath>
-            <exclusions>
-                <exclusion>
-                    <groupId>org.yaml</groupId>
-                    <artifactId>snakeyaml</artifactId>
-                </exclusion>
-                <exclusion>
-                    <groupId>com.google.code.gson</groupId>
-                    <artifactId>gson</artifactId>
-                </exclusion>
-                <exclusion>
-                    <groupId>com.google.guava</groupId>
-                    <artifactId>guava</artifactId>
-                </exclusion>
-                <exclusion>
-                    <groupId>net.md-5</groupId>
-                    <artifactId>bungeecord-chat</artifactId>
-                </exclusion>
-            </exclusions>
+            <systemPath>${basedir}/lib/spigot-1.16.5.jar</systemPath>
         </dependency>
     </dependencies>
 
@@ -122,6 +80,7 @@
 
                                     <include>org.spongepowered:configurate-core</include>
                                     <include>io.leangen.geantyref:geantyref</include>
+                                    <include>com.google.errorprone:error_prone_annotations</include>
                                     <include>org.checkerframework:checkerframework</include>
 
                                     <include>org.spongepowered:configurate-yaml</include>
@@ -131,16 +90,6 @@
                                     <include>com.google.gson:gson</include>
                                 </includes>
                             </artifactSet>
-                            <relocations>
-                                <relocation>
-                                    <pattern>dev.minecode.core</pattern>
-                                    <shadedPattern>dev.minecode.language.shade.core</shadedPattern>
-                                </relocation>
-                                <relocation>
-                                    <pattern>org.yaml</pattern>
-                                    <shadedPattern>dev.minecode.language.shade.yaml</shadedPattern>
-                                </relocation>
-                            </relocations>
                             <filters>
                                 <filter>
                                     <artifact>*:*</artifact>

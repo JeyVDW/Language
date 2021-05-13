@@ -2,6 +2,7 @@ package dev.minecode.language.common.api.manager;
 
 import dev.minecode.core.api.CoreAPI;
 import dev.minecode.core.api.object.FileObject;
+import dev.minecode.language.api.LanguageAPI;
 import dev.minecode.language.api.manager.FileManager;
 
 public class FileManagerProvider implements FileManager {
@@ -12,7 +13,7 @@ public class FileManagerProvider implements FileManager {
     }
 
     private void makeInstances() {
-        config = CoreAPI.getInstance().getFileManager().getFileObject("config.yml", CoreAPI.getInstance().getPluginManager().getPluginName());
+        config = CoreAPI.getInstance().getFileManager().getFileObject(LanguageAPI.getInstance().getThisCorePlugin(), "config.yml");
     }
 
     @Override

@@ -4,13 +4,13 @@ description: A plugin to manage the language
 
 main: dev.minecode.language.spigot.LanguageSpigot
 version: 0.1.0-Pre.1
-api-version: 1.8.8
+api-version: 1.16
 
 author: MineCode
 authors:
   - Jerome
   - Leonard
-website: http://minecode.dev
+website: https://minecode.dev
 
 commands:
   language:

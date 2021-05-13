@@ -1,6 +1,5 @@
 package dev.minecode.language.spigot;
 
-import dev.minecode.core.api.CoreAPI;
 import dev.minecode.core.spigot.CoreSpigot;
 import dev.minecode.language.common.LanguageCommon;
 import dev.minecode.language.spigot.command.LanguageCommand;
@@ -31,13 +30,12 @@ public class LanguageSpigot extends JavaPlugin {
 
     @Override
     public void onDisable() {
-        if (CoreAPI.getInstance().getPluginManager().isUsingSQL())
-            CoreAPI.getInstance().getDatabaseManager().disconnect();
+        CoreSpigot.getInstance().onDisable();
     }
 
     private void makeInstances() {
         instance = this;
-        new CoreSpigot(this);
+        CoreSpigot.getInstance().registerPlugin(getDescription().getName(), getDescription().getName(), this);
         new LanguageCommon();
         inventoryManager = new InventoryManager();
     }
@@ -52,8 +50,8 @@ public class LanguageSpigot extends JavaPlugin {
     }
 
     private void registerChannels() {
-        Bukkit.getMessenger().registerIncomingPluginChannel(this, "MineCode", new PluginMessageListener());
-        Bukkit.getMessenger().registerOutgoingPluginChannel(this, "MineCode");
+        Bukkit.getMessenger().registerIncomingPluginChannel(this, "minecode:language", new PluginMessageListener());
+        Bukkit.getMessenger().registerOutgoingPluginChannel(this, "minecode:language");
     }
 
     public InventoryManager getInventoryManager() {

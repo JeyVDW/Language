@@ -12,8 +12,8 @@ import java.util.Map;
 
 public class ItemBuilder {
 
-    private ItemStack item;
-    private ItemMeta itemMeta;
+    private final ItemStack item;
+    private final ItemMeta itemMeta;
 
     public ItemBuilder(Material mat) {
         item = new ItemStack(mat);
@@ -67,7 +67,7 @@ public class ItemBuilder {
     }
 
     public ItemBuilder setUnbreakable(boolean unbreakable) {
-        itemMeta.spigot().setUnbreakable(unbreakable);
+        itemMeta.setUnbreakable(unbreakable);
         return this;
     }
 

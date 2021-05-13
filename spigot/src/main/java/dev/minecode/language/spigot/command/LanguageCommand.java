@@ -2,6 +2,7 @@ package dev.minecode.language.spigot.command;
 
 import dev.minecode.core.api.CoreAPI;
 import dev.minecode.core.api.object.CorePlayer;
+import dev.minecode.core.api.object.CorePlugin;
 import dev.minecode.core.api.object.Language;
 import dev.minecode.language.api.LanguageAPI;
 import dev.minecode.language.spigot.LanguageSpigot;
@@ -17,6 +18,8 @@ import java.util.List;
 
 public class LanguageCommand implements CommandExecutor, TabCompleter {
 
+    private final CorePlugin corePlugin = LanguageAPI.getInstance().getThisCorePlugin();
+
     public LanguageCommand(PluginCommand pluginCommand) {
         pluginCommand.setExecutor(this);
         pluginCommand.setTabCompleter(this);
@@ -24,45 +27,49 @@ public class LanguageCommand implements CommandExecutor, TabCompleter {
 
     @Override
     public boolean onCommand(CommandSender commandSender, Command command, String s, String[] args) {
-        CorePlayer coreExecuter = CoreAPI.getInstance().getPlayerManager().getCorePlayer(commandSender.getName());
+        CorePlayer coreExecuter = CoreAPI.getInstance().getPlayerManager().getPlayer(commandSender.getName());
 
         if (!commandSender.hasPermission("language.use")) {
-            commandSender.sendMessage(CoreAPI.getInstance().getReplaceManager(coreExecuter.getLanguage(), LanguageLanguageSpigot.noPermission)
+            commandSender.sendMessage(CoreAPI.getInstance().getReplaceManager(coreExecuter.getLanguage(corePlugin), LanguageLanguageSpigot.languageCommandNoPermission)
                     .args(command.getName(), args, "arg").chatcolorAll().getMessage());
             return true;
         }
 
         if (args.length == 0) {
             if (!(commandSender instanceof Player)) {
-                commandSender.sendMessage(CoreAPI.getInstance().getReplaceManager(coreExecuter.getLanguage(), LanguageLanguageSpigot.noPlayer)
+                commandSender.sendMessage(CoreAPI.getInstance().getReplaceManager(coreExecuter.getLanguage(corePlugin), LanguageLanguageSpigot.languageCommandNoPlayer)
                         .args(command.getName(), args, "arg").chatcolorAll().getMessage());
                 return true;
             }
 
             if (LanguageAPI.getInstance().isUsingGUI()) {
-                Language language = coreExecuter.getLanguage();
+                Language language = coreExecuter.getLanguage(corePlugin);
                 if (language == null)
-                    language = CoreAPI.getInstance().getLanguageManager().getDefaultLanguage();
+                    language = CoreAPI.getInstance().getLanguageManager().getDefaultLanguage(corePlugin);
                 ((Player) commandSender).openInventory(LanguageSpigot.getInstance().getInventoryManager().getLanguageInventory().get(language));
                 return true;
             }
 
-            commandSender.sendMessage(CoreAPI.getInstance().getReplaceManager(coreExecuter.getLanguage(), LanguageLanguageSpigot.languageCommandLanguageSelection).chatcolorAll().getMessage());
+            System.out.println(coreExecuter.getUuid());
+            System.out.println(coreExecuter.getName());
+            System.out.println(coreExecuter.getLanguage(corePlugin).getName());
 
-            String repeat = CoreAPI.getInstance().getReplaceManager(coreExecuter.getLanguage(), LanguageLanguageSpigot.languageCommandLanguageCollection).chatcolorAll().getMessage();
+            commandSender.sendMessage(CoreAPI.getInstance().getReplaceManager(coreExecuter.getLanguage(corePlugin), LanguageLanguageSpigot.languageCommandLanguageSelection).chatcolorAll().getMessage());
+
+            String repeat = CoreAPI.getInstance().getReplaceManager(coreExecuter.getLanguage(corePlugin), LanguageLanguageSpigot.languageCommandLanguageCollection).chatcolorAll().getMessage();
             String isocode;
-            for (Language language : CoreAPI.getInstance().getLanguageManager().getAllLanguages()) {
+            for (Language language : CoreAPI.getInstance().getLanguageManager().getAllLanguages(corePlugin)) {
                 isocode = language.getIsocode();
                 BaseComponent[] b = CoreAPI.getInstance().getReplaceManager(repeat)
-                        .language(CoreAPI.getInstance().getLanguageManager().getLanguage(isocode), "language").chatcolorAll().getBaseMessage();
+                        .language(CoreAPI.getInstance().getLanguageManager().getLanguage(corePlugin, isocode), "language").chatcolorAll().getBaseMessage();
                 for (BaseComponent baseComponent : b) {
                     baseComponent.setClickEvent(
                             new ClickEvent(ClickEvent.Action.RUN_COMMAND, "/language " + isocode));
                     baseComponent.setHoverEvent(
                             new HoverEvent(
                                     HoverEvent.Action.SHOW_TEXT,
-                                    CoreAPI.getInstance().getReplaceManager(coreExecuter.getLanguage(), LanguageLanguageSpigot.languageHoverText)
-                                            .language(CoreAPI.getInstance().getLanguageManager().getLanguage(isocode), "language").chatcolorAll().getBaseMessage()));
+                                    CoreAPI.getInstance().getReplaceManager(coreExecuter.getLanguage(corePlugin), LanguageLanguageSpigot.languageHoverText)
+                                            .language(CoreAPI.getInstance().getLanguageManager().getLanguage(corePlugin, isocode), "language").chatcolorAll().getBaseMessage()));
                 }
                 ((Player) commandSender).spigot().sendMessage(b);
             }
@@ -72,26 +79,26 @@ public class LanguageCommand implements CommandExecutor, TabCompleter {
         if (args.length == 1) {
             String isocode = args[0];
             Language language;
-            if ((language = CoreAPI.getInstance().getLanguageManager().getLanguage(isocode)) == null) {
-                commandSender.sendMessage(CoreAPI.getInstance().getReplaceManager(coreExecuter.getLanguage(), LanguageLanguageSpigot.noValidIsocode)
+            if ((language = CoreAPI.getInstance().getLanguageManager().getLanguage(corePlugin, isocode)) == null) {
+                commandSender.sendMessage(CoreAPI.getInstance().getReplaceManager(coreExecuter.getLanguage(corePlugin), LanguageLanguageSpigot.languageCommandNoValidIsocode)
                         .args(command.getName(), args, "arg").chatcolorAll().getMessage());
                 return true;
             }
 
-            Language oldLanguage = coreExecuter.getLanguage();
-            coreExecuter.setLanguage(language);
+            Language oldLanguage = coreExecuter.getLanguage(corePlugin);
+            coreExecuter.setLanguage(language.getIsocode());
             coreExecuter.save();
 
-            commandSender.sendMessage(CoreAPI.getInstance().getReplaceManager(coreExecuter.getLanguage(), LanguageLanguageSpigot.languageCommandChange)
-                    .language(coreExecuter.getLanguage(), "language")
+            commandSender.sendMessage(CoreAPI.getInstance().getReplaceManager(coreExecuter.getLanguage(corePlugin), LanguageLanguageSpigot.languageCommandChange)
+                    .language(coreExecuter.getLanguage(corePlugin), "language")
                     .language(oldLanguage, "oldLanguage")
                     .args(command.getName(), args, "arg").chatcolorAll().getMessage());
             return true;
         }
 
-        commandSender.sendMessage(CoreAPI.getInstance().getReplaceManager(coreExecuter.getLanguage(), LanguageLanguageSpigot.syntax).chatcolorAll().getMessage());
-        commandSender.sendMessage(CoreAPI.getInstance().getReplaceManager(coreExecuter.getLanguage(), LanguageLanguageSpigot.languageCommandSyntaxChoose).chatcolorAll().getMessage());
-        commandSender.sendMessage(CoreAPI.getInstance().getReplaceManager(coreExecuter.getLanguage(), LanguageLanguageSpigot.languageCommandSyntaxSet).chatcolorAll().getMessage());
+        commandSender.sendMessage(CoreAPI.getInstance().getReplaceManager(coreExecuter.getLanguage(corePlugin), LanguageLanguageSpigot.languageCommandSyntaxInfo).chatcolorAll().getMessage());
+        commandSender.sendMessage(CoreAPI.getInstance().getReplaceManager(coreExecuter.getLanguage(corePlugin), LanguageLanguageSpigot.languageCommandSyntaxChoose).chatcolorAll().getMessage());
+        commandSender.sendMessage(CoreAPI.getInstance().getReplaceManager(coreExecuter.getLanguage(corePlugin), LanguageLanguageSpigot.languageCommandSyntaxSet).chatcolorAll().getMessage());
         return true;
     }
 
@@ -106,7 +113,7 @@ public class LanguageCommand implements CommandExecutor, TabCompleter {
         }
 
         if (args.length == 1) {
-            for (Language language : CoreAPI.getInstance().getLanguageManager().getAllLanguages()) {
+            for (Language language : CoreAPI.getInstance().getLanguageManager().getAllLanguages(corePlugin)) {
                 list.add(language.getIsocode());
             }
             search = args[0].toLowerCase();

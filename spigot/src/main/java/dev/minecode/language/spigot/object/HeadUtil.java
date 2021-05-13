@@ -59,7 +59,7 @@ public class HeadUtil {
         Objects.requireNonNull(texture);
         Objects.requireNonNull(id);
         Objects.requireNonNull(name);
-        ItemStack item = new ItemStack(Material.SKULL_ITEM, 1, (short) 3);
+        ItemStack item = new ItemStack(Material.PLAYER_HEAD, 1, (short) 3);
         ItemMeta meta = item.getItemMeta();
         meta.setDisplayName(name);
 

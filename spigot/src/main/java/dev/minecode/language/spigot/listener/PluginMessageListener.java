@@ -3,6 +3,7 @@ package dev.minecode.language.spigot.listener;
 import dev.minecode.core.api.CoreAPI;
 import dev.minecode.core.api.object.CorePlayer;
 import dev.minecode.core.api.object.Language;
+import dev.minecode.language.api.LanguageAPI;
 import dev.minecode.language.spigot.LanguageSpigot;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
@@ -19,19 +20,16 @@ public class PluginMessageListener implements org.bukkit.plugin.messaging.Plugin
             ByteArrayInputStream byteArrayInputStream = new ByteArrayInputStream(bytes);
             DataInputStream dataInputStream = new DataInputStream(byteArrayInputStream);
 
-            String subChannel = dataInputStream.readUTF();
             String identifier = dataInputStream.readUTF();
 
-            if (subChannel.equals("Language")) {
-                if (identifier.equals("OpenLanguageChangeGUI")) {
-                    String playerUUID = dataInputStream.readUTF();
-                    Player player = Bukkit.getPlayer(UUID.fromString(playerUUID));
-                    CorePlayer corePlayer = CoreAPI.getInstance().getPlayerManager().getCorePlayer(player.getUniqueId());
+            if (identifier.equals("OpenLanguageChangeGUI")) {
+                String playerUUID = dataInputStream.readUTF();
+                Player player = Bukkit.getPlayer(UUID.fromString(playerUUID));
+                CorePlayer corePlayer = CoreAPI.getInstance().getPlayerManager().getPlayer(player.getUniqueId());
 
-                    Language language = corePlayer.getLanguage();
+                Language language = corePlayer.getLanguage(LanguageAPI.getInstance().getThisCorePlugin());
 
-                    player.openInventory(LanguageSpigot.getInstance().getInventoryManager().getLanguageInventory().get(language));
-                }
+                player.openInventory(LanguageSpigot.getInstance().getInventoryManager().getLanguageInventory().get(language));
             }
         } catch (IOException e) {
             e.printStackTrace();

@@ -15,18 +15,18 @@
     <url>https://github.com/MineCodeDEV/Language/tree/master/common</url>
 
     <dependencies>
-        <!-- MineCode Language -->
+        <!-- MineCodeDEV Language -->
         <dependency>
             <groupId>dev.minecode.language</groupId>
             <artifactId>api</artifactId>
             <version>0.1.0-Pre.1</version>
         </dependency>
 
-        <!-- MineCode Core -->
+        <!-- MineCodeDEV Core -->
         <dependency>
             <groupId>dev.minecode.core</groupId>
             <artifactId>common</artifactId>
-            <version>0.1.0-Pre.48</version>
+            <version>0.1.0-Pre.57</version>
         </dependency>
     </dependencies>
 

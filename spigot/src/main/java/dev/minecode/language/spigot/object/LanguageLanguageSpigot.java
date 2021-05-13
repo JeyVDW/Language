@@ -4,18 +4,15 @@ import dev.minecode.core.api.object.LanguageAbstract;
 
 public enum LanguageLanguageSpigot implements LanguageAbstract {
 
-    noPermission("noPermission"),
-    noPlayer("noPlayer"),
-    playerNotOnline("playerNotOnline"),
-    playerNotExists("playerNotExists"),
-    noValidIsocode("noValidIsocode"),
-    syntax("syntax"),
-
+    languageCommandNoPermission("language", "command", "noPermission"),
+    languageCommandNoPlayer("language", "command", "noPlayer"),
+    languageCommandSyntaxInfo("language", "command", "syntax", "info"),
     languageCommandSyntaxChoose("language", "command", "syntax", "choose"),
     languageCommandSyntaxSet("language", "command", "syntax", "set"),
+    languageCommandNoValidIsocode("language", "command", "noValidIsocode"),
     languageCommandChange("language", "command", "change"),
-    languageCommandLanguageCollection("language", "command", "languageCollection"),
     languageCommandLanguageSelection("language", "command", "languageSelection"),
+    languageCommandLanguageCollection("language", "command", "languageCollection"),
 
     languageGuiTitle("language", "gui", "title"),
     languageGuiPlaceholderItemMaterial("language", "gui", "placeholderItem", "material"),
@@ -25,7 +22,7 @@ public enum LanguageLanguageSpigot implements LanguageAbstract {
 
     languageHoverText("language", "hover", "text");
 
-    private String[] path;
+    private final String[] path;
 
     LanguageLanguageSpigot(String... path) {
         this.path = path;

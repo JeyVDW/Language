@@ -1,6 +1,7 @@
 package dev.minecode.language.api;
 
 import dev.minecode.core.api.CoreAPI;
+import dev.minecode.core.api.object.CorePlugin;
 import dev.minecode.language.api.manager.FileManager;
 
 public abstract class LanguageAPI {
@@ -27,7 +28,9 @@ public abstract class LanguageAPI {
     public abstract FileManager getFileManager();
 
 
-    // Variables
+    // Getter & Setter
+    public abstract CorePlugin getThisCorePlugin();
+
     public abstract boolean isUsingGUI();
 
     public abstract boolean isForceOpenInventory();

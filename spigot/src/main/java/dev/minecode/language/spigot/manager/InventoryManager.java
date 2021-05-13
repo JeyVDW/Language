@@ -1,7 +1,9 @@
 package dev.minecode.language.spigot.manager;
 
 import dev.minecode.core.api.CoreAPI;
+import dev.minecode.core.api.object.CorePlugin;
 import dev.minecode.core.api.object.Language;
+import dev.minecode.language.api.LanguageAPI;
 import dev.minecode.language.spigot.object.HeadUtil;
 import dev.minecode.language.spigot.object.ItemBuilder;
 import dev.minecode.language.spigot.object.LanguageLanguageSpigot;
@@ -17,13 +19,15 @@ import java.util.UUID;
 
 public class InventoryManager {
 
-    private HashMap<Language, Inventory> languageInventory;
-    private int languageInventorySize;
+    private final CorePlugin corePlugin = LanguageAPI.getInstance().getThisCorePlugin();
+
+    private final HashMap<Language, Inventory> languageInventory;
+    private final int languageInventorySize;
 
     public InventoryManager() {
         languageInventory = new HashMap<>();
         languageInventorySize = getLanguageInventorySize();
-        for (Language language : CoreAPI.getInstance().getLanguageManager().getAllLanguages()) {
+        for (Language language : CoreAPI.getInstance().getLanguageManager().getAllLanguages(corePlugin)) {
             languageInventory.put(language, createLanguageInventory(language));
 
         }
@@ -39,7 +43,7 @@ public class InventoryManager {
                     .setDisplayName(CoreAPI.getInstance().getReplaceManager(language, LanguageLanguageSpigot.languageGuiPlaceholderItemDisplayname).chatcolorAll().getMessage()).build());
         }
 
-        for (Language language2 : CoreAPI.getInstance().getLanguageManager().getAllLanguages()) {
+        for (Language language2 : CoreAPI.getInstance().getLanguageManager().getAllLanguages(corePlugin)) {
             String displayname = CoreAPI.getInstance().getReplaceManager(language2.getDisplayname())
                     .language(language2, "").chatcolorAll().getMessage();
             List<String> lore = new ArrayList<>();
@@ -56,7 +60,7 @@ public class InventoryManager {
 
     private int getLanguageInventorySize() {
         int highest = 9;
-        for (Language language : CoreAPI.getInstance().getLanguageManager().getAllLanguages()) {
+        for (Language language : CoreAPI.getInstance().getLanguageManager().getAllLanguages(corePlugin)) {
             int ici = language.getSlot();
             while (highest < ici) {
                 highest = highest + 9;

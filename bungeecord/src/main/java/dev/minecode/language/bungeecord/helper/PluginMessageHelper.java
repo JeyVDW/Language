@@ -13,7 +13,6 @@ public class PluginMessageHelper {
         DataOutputStream dataOutputStream = new DataOutputStream(byteArrayOutputStream);
 
         try {
-            dataOutputStream.writeUTF("Language");
             dataOutputStream.writeUTF("OpenLanguageChangeGUI");
             dataOutputStream.writeUTF(proxiedPlayer.getUniqueId().toString());
         } catch (IOException e) {
@@ -21,6 +20,6 @@ public class PluginMessageHelper {
         }
 
         ServerInfo serverInfo = proxiedPlayer.getServer().getInfo();
-        serverInfo.sendData("MineCode", byteArrayOutputStream.toByteArray());
+        serverInfo.sendData("minecode:language", byteArrayOutputStream.toByteArray());
     }
 }

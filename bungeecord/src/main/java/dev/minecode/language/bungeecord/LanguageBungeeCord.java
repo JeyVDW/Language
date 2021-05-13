@@ -28,7 +28,7 @@ public class LanguageBungeeCord extends Plugin {
 
     private void makeInstances() {
         instance = this;
-        new CoreBungeeCord(this);
+        CoreBungeeCord.getInstance().registerPlugin(getDescription().getName(), getDescription().getName(), this);
         new LanguageCommon();
     }
 
@@ -41,6 +41,6 @@ public class LanguageBungeeCord extends Plugin {
     }
 
     private void registerChannels() {
-        getProxy().registerChannel("MineCode");
+        getProxy().registerChannel("minecode:language");
     }
 }

@@ -1,5 +1,7 @@
 package dev.minecode.language.common.api;
 
+import dev.minecode.core.api.CoreAPI;
+import dev.minecode.core.api.object.CorePlugin;
 import dev.minecode.language.api.LanguageAPI;
 import dev.minecode.language.api.manager.FileManager;
 import dev.minecode.language.common.api.manager.FileManagerProvider;
@@ -9,6 +11,7 @@ public class LanguageAPIProvider extends LanguageAPI {
 
     private FileManager fileManager;
 
+    private CorePlugin thisCorePlugin;
     private boolean usingGUI;
     private boolean forceOpenInventory;
 
@@ -18,6 +21,8 @@ public class LanguageAPIProvider extends LanguageAPI {
 
     private void makeInstances() {
         LanguageAPI.setInstance(this);
+
+        thisCorePlugin = CoreAPI.getInstance().getPluginManager().getPlugin("Language");
         fileManager = new FileManagerProvider();
 
         ConfigurationNode configNode = fileManager.getConfig().getConf();
@@ -28,6 +33,11 @@ public class LanguageAPIProvider extends LanguageAPI {
     @Override
     public FileManager getFileManager() {
         return fileManager;
+    }
+
+    @Override
+    public CorePlugin getThisCorePlugin() {
+        return thisCorePlugin;
     }
 
     @Override
