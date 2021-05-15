@@ -28,7 +28,7 @@ public class LanguageBungeeCord extends Plugin {
 
     private void makeInstances() {
         instance = this;
-        CoreBungeeCord.getInstance().registerPlugin(getDescription().getName(), getDescription().getName(), this);
+        CoreBungeeCord.getInstance().registerPlugin(this, true);
         new LanguageCommon();
     }
 

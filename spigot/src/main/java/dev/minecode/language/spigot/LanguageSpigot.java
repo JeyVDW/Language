@@ -35,7 +35,7 @@ public class LanguageSpigot extends JavaPlugin {
 
     private void makeInstances() {
         instance = this;
-        CoreSpigot.getInstance().registerPlugin(getDescription().getName(), getDescription().getName(), this);
+        CoreSpigot.getInstance().registerPlugin(this, true);
         new LanguageCommon();
         inventoryManager = new InventoryManager();
     }

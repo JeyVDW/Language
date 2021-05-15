@@ -50,10 +50,6 @@ public class LanguageCommand implements CommandExecutor, TabCompleter {
                 return true;
             }
 
-            System.out.println(coreExecuter.getUuid());
-            System.out.println(coreExecuter.getName());
-            System.out.println(coreExecuter.getLanguage(corePlugin).getName());
-
             commandSender.sendMessage(CoreAPI.getInstance().getReplaceManager(coreExecuter.getLanguage(corePlugin), LanguageLanguageSpigot.languageCommandLanguageSelection).chatcolorAll().getMessage());
 
             String repeat = CoreAPI.getInstance().getReplaceManager(coreExecuter.getLanguage(corePlugin), LanguageLanguageSpigot.languageCommandLanguageCollection).chatcolorAll().getMessage();
