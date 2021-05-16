@@ -14,6 +14,12 @@ import java.io.IOException;
 import java.util.UUID;
 
 public class PluginMessageListener implements org.bukkit.plugin.messaging.PluginMessageListener {
+
+    public PluginMessageListener() {
+        Bukkit.getMessenger().registerIncomingPluginChannel(LanguageSpigot.getInstance(), "minecode:language", this);
+        Bukkit.getMessenger().registerOutgoingPluginChannel(LanguageSpigot.getInstance(), "minecode:language");
+    }
+
     @Override
     public void onPluginMessageReceived(String channel, Player messagePlayer, byte[] bytes) {
         try {

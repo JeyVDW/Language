@@ -10,6 +10,11 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
 
 public class PlayerListener implements Listener {
+
+    public PlayerListener() {
+        Bukkit.getPluginManager().registerEvents(this, LanguageSpigot.getInstance());
+    }
+
     @EventHandler
     public void handlePlayerJoin(PlayerJoinEvent event) {
         Player player = event.getPlayer();

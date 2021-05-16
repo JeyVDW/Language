@@ -9,7 +9,7 @@ import org.spongepowered.configurate.ConfigurationNode;
 
 public class LanguageAPIProvider extends LanguageAPI {
 
-    private FileManager fileManager;
+    private FileManagerProvider fileManager;
 
     private CorePlugin thisCorePlugin;
     private boolean usingGUI;

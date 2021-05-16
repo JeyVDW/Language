@@ -5,8 +5,10 @@ import dev.minecode.core.api.object.CorePlayer;
 import dev.minecode.core.api.object.CorePlugin;
 import dev.minecode.core.api.object.Language;
 import dev.minecode.language.api.LanguageAPI;
+import dev.minecode.language.spigot.LanguageSpigot;
 import dev.minecode.language.spigot.object.HeadUtil;
 import dev.minecode.language.spigot.object.LanguageLanguageSpigot;
+import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -18,6 +20,10 @@ import org.bukkit.inventory.meta.ItemMeta;
 public class InventoryListener implements Listener {
 
     private final CorePlugin corePlugin = LanguageAPI.getInstance().getThisCorePlugin();
+
+    public InventoryListener() {
+        Bukkit.getPluginManager().registerEvents(this, LanguageSpigot.getInstance());
+    }
 
     @EventHandler
     public void handleLanguageChange(InventoryClickEvent event) {

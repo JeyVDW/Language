@@ -13,6 +13,11 @@ import net.md_5.bungee.event.EventHandler;
 import java.util.concurrent.TimeUnit;
 
 public class PlayerListener implements Listener {
+
+    public PlayerListener() {
+        LanguageBungeeCord.getInstance().getProxy().getPluginManager().registerListener(LanguageBungeeCord.getInstance(), this);
+    }
+
     @EventHandler
     public void handlePlayerJoin(PostLoginEvent event) {
         ProxiedPlayer proxiedPlayer = event.getPlayer();

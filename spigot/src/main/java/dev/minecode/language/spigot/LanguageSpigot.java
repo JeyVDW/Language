@@ -4,10 +4,8 @@ import dev.minecode.core.spigot.CoreSpigot;
 import dev.minecode.language.common.LanguageCommon;
 import dev.minecode.language.spigot.command.LanguageCommand;
 import dev.minecode.language.spigot.listener.InventoryListener;
-import dev.minecode.language.spigot.listener.PlayerListener;
 import dev.minecode.language.spigot.listener.PluginMessageListener;
 import dev.minecode.language.spigot.manager.InventoryManager;
-import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
 
 public class LanguageSpigot extends JavaPlugin {
@@ -41,17 +39,16 @@ public class LanguageSpigot extends JavaPlugin {
     }
 
     private void registerCommands() {
-        new LanguageCommand(getCommand("language"));
+        new LanguageCommand();
     }
 
     private void registerListeners() {
-        Bukkit.getPluginManager().registerEvents(new InventoryListener(), this);
-        Bukkit.getPluginManager().registerEvents(new PlayerListener(), this);
+        new InventoryListener();
+        new InventoryListener();
     }
 
     private void registerChannels() {
-        Bukkit.getMessenger().registerIncomingPluginChannel(this, "minecode:language", new PluginMessageListener());
-        Bukkit.getMessenger().registerOutgoingPluginChannel(this, "minecode:language");
+        new PluginMessageListener();
     }
 
     public InventoryManager getInventoryManager() {

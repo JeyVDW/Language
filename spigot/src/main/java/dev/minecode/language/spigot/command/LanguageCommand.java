@@ -20,7 +20,8 @@ public class LanguageCommand implements CommandExecutor, TabCompleter {
 
     private final CorePlugin corePlugin = LanguageAPI.getInstance().getThisCorePlugin();
 
-    public LanguageCommand(PluginCommand pluginCommand) {
+    public LanguageCommand() {
+        PluginCommand pluginCommand = LanguageSpigot.getInstance().getCommand("language");
         pluginCommand.setExecutor(this);
         pluginCommand.setTabCompleter(this);
     }

@@ -37,7 +37,7 @@ public class LanguageBungeeCord extends Plugin {
     }
 
     private void registerListeners() {
-        getProxy().getPluginManager().registerListener(this, new PlayerListener());
+        new PlayerListener();
     }
 
     private void registerChannels() {

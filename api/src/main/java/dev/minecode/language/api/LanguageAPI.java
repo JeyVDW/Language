@@ -1,6 +1,5 @@
 package dev.minecode.language.api;
 
-import dev.minecode.core.api.CoreAPI;
 import dev.minecode.core.api.object.CorePlugin;
 import dev.minecode.language.api.manager.FileManager;
 
@@ -15,12 +14,6 @@ public abstract class LanguageAPI {
 
     public static void setInstance(LanguageAPI instance) {
         LanguageAPI.instance = instance;
-    }
-
-
-    // CoreAPI
-    private static CoreAPI getCoreAPI() {
-        return CoreAPI.getInstance();
     }
 
 
