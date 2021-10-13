@@ -33,16 +33,16 @@
         <dependency>
             <groupId>dev.minecode.core</groupId>
             <artifactId>spigot</artifactId>
-            <version>0.1.0-Pre.66</version>
+            <version>0.1.0-Pre.71</version>
         </dependency>
 
         <!-- Spigot -->
         <dependency>
             <groupId>org.spigotmc</groupId>
             <artifactId>spigot</artifactId>
-            <version>1.16.5-R0.1-SNAPSHOT</version>
+            <version>1.17.1-R0.1-SNAPSHOT</version>
             <scope>system</scope>
-            <systemPath>${basedir}/lib/spigot-1.16.5.jar</systemPath>
+            <systemPath>${basedir}/lib/spigot-1.17.1.jar</systemPath>
         </dependency>
     </dependencies>
 
