@@ -13,12 +13,11 @@ public class LanguageCommon {
     public LanguageCommon() {
         makeInstances();
 
-        CorePlugin languagePlugin = LanguageAPI.getInstance().getThisCorePlugin();
-        UpdateManager updateManager = CoreAPI.getInstance().getUpdateManager(languagePlugin);
+        CorePlugin corePlugin = LanguageAPI.getInstance().getThisCorePlugin();
+        UpdateManager updateManager = CoreAPI.getInstance().getUpdateManager(corePlugin);
 
-        if (updateManager.updateAvailable()) {
-            System.out.println("[" + languagePlugin.getName() + "] There is a newer Version available! You can download it at " + updateManager.getReleaseURL(updateManager.getMatchingRelease()));
-        }
+        if (updateManager.updateAvailable())
+            System.out.println("[" + corePlugin.getName() + "] There is a newer Version available! You can download it at " + updateManager.getReleaseURL(updateManager.getMatchingRelease()));
     }
 
     public static LanguageCommon getInstance() {

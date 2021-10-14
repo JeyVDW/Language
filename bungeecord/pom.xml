@@ -36,7 +36,7 @@
             <version>0.1.0-Pre.80</version>
         </dependency>
 
-        <!-- BungeeCord -->
+        <!-- SpigotMC BungeeCord -->
         <dependency>
             <groupId>net.md-5</groupId>
             <artifactId>bungeecord-api</artifactId>

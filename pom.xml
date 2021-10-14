@@ -19,6 +19,31 @@
     <description>A plugin to manage the language</description>
     <url>https://github.com/MineCodeDEV/Language</url>
 
+    <organization>
+        <name>MineCodeDEV</name>
+        <url>https://github.com/MineCodeDEV</url>
+    </organization>
+
+    <issueManagement>
+        <system>GitHub Issues</system>
+        <url>https://github.com/MineCodeDEV/Language/issues</url>
+    </issueManagement>
+
+    <licenses>
+        <license>
+            <name>MIT</name>
+            <url>https://opensource.org/licenses/MIT</url>
+        </license>
+    </licenses>
+
+    <distributionManagement>
+        <repository>
+            <id>github</id>
+            <name>GitHub MineCodeDEV Apache Maven Packages</name>
+            <url>https://maven.pkg.github.com/minecodedev/language</url>
+        </repository>
+    </distributionManagement>
+
     <properties>
         <maven.compiler.source>8</maven.compiler.source>
         <maven.compiler.target>8</maven.compiler.target>
