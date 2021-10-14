@@ -10,6 +10,7 @@ import dev.minecode.language.spigot.object.LanguageLanguageSpigot;
 import net.md_5.bungee.api.chat.BaseComponent;
 import net.md_5.bungee.api.chat.ClickEvent;
 import net.md_5.bungee.api.chat.HoverEvent;
+import net.md_5.bungee.api.chat.hover.content.Text;
 import org.bukkit.command.*;
 import org.bukkit.entity.Player;
 
@@ -57,18 +58,19 @@ public class LanguageCommand implements CommandExecutor, TabCompleter {
             String isocode;
             for (Language language : CoreAPI.getInstance().getLanguageManager().getAllLanguages(corePlugin)) {
                 isocode = language.getIsocode();
-                BaseComponent[] b = CoreAPI.getInstance().getReplaceManager(repeat)
+
+                BaseComponent[] baseMessage = CoreAPI.getInstance().getReplaceManager(repeat)
                         .language(CoreAPI.getInstance().getLanguageManager().getLanguage(corePlugin, isocode), "language").chatcolorAll().getBaseMessage();
-                for (BaseComponent baseComponent : b) {
-                    baseComponent.setClickEvent(
+
+                for (BaseComponent tempBaseComponent : baseMessage) {
+                    tempBaseComponent.setClickEvent(
                             new ClickEvent(ClickEvent.Action.RUN_COMMAND, "/language " + isocode));
-                    baseComponent.setHoverEvent(
-                            new HoverEvent(
-                                    HoverEvent.Action.SHOW_TEXT,
-                                    CoreAPI.getInstance().getReplaceManager(coreExecuter.getLanguage(corePlugin), LanguageLanguageSpigot.languageHoverText)
-                                            .language(CoreAPI.getInstance().getLanguageManager().getLanguage(corePlugin, isocode), "language").chatcolorAll().getBaseMessage()));
+                    tempBaseComponent.setHoverEvent(new HoverEvent(
+                            HoverEvent.Action.SHOW_TEXT,
+                            new Text(CoreAPI.getInstance().getReplaceManager(coreExecuter.getLanguage(corePlugin), LanguageLanguageSpigot.languageHoverLanguageChoose)
+                                    .language(CoreAPI.getInstance().getLanguageManager().getLanguage(corePlugin, isocode), "language").chatcolorAll().getBaseMessage())));
                 }
-                ((Player) commandSender).spigot().sendMessage(b);
+                ((Player) commandSender).spigot().sendMessage(baseMessage);
             }
             return true;
         }
@@ -83,6 +85,14 @@ public class LanguageCommand implements CommandExecutor, TabCompleter {
             }
 
             Language oldLanguage = coreExecuter.getLanguage(corePlugin);
+
+            if (language == oldLanguage) {
+                commandSender.sendMessage(CoreAPI.getInstance().getReplaceManager(coreExecuter.getLanguage(corePlugin), LanguageLanguageSpigot.languageCommandAlreadyChosen)
+                        .language(language, "language")
+                        .args(command.getName(), args, "arg").chatcolorAll().getMessage());
+                return true;
+            }
+
             coreExecuter.setLanguage(language.getIsocode());
             coreExecuter.save();
 

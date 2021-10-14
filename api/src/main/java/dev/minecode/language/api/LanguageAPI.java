@@ -2,6 +2,7 @@ package dev.minecode.language.api;
 
 import dev.minecode.core.api.object.CorePlugin;
 import dev.minecode.language.api.manager.FileManager;
+import dev.minecode.language.api.manager.LanguageDetailsManager;
 
 public abstract class LanguageAPI {
 
@@ -19,6 +20,8 @@ public abstract class LanguageAPI {
 
     // Manager
     public abstract FileManager getFileManager();
+
+    public abstract LanguageDetailsManager getLanguageDetailsManager();
 
 
     // Getter & Setter

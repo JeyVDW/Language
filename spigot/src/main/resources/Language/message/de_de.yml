@@ -16,9 +16,12 @@ language:
       choose: "&8- &6/language &8- &7Wähle deine Sprache aus"
       set: "&8- &6/language [Isocode] &8- &7Stelle deine Sprache ein"
     noValidIsocode: "&cLanguage &8» &7Bitte gib einen gültigen Isocode an"
+    alreadyChosen: "&cLanguage &8» &7Du hast die Sprache &6%languageDisplayname% &7bereits ausgewählt"
     change: "&aLanguage &8» &7Du hast deine Sprache von &e%oldLanguageDisplayname% &7zu &6%languageDisplayname% &7geändert"
     languageSelection: "&9Language &8» &7Du kannst eine der folgenden Sprachen auswählen:"
     languageCollection: "&8- %languageDisplayname%"
+  event:
+    localeChanged: "&9Language &8» &7Es wurde die Sprache &6%clientLanguageDisplayname% &7bei deinem Client gefunden, obwohl du &e%languageDisplayname% &7auf diesem Server ausgewählt hast. Möchtest du deine Sprache zu &6%clientLanguageDisplayname% &7ändern?"
   gui:
     title: "&5Sprache"
     placeholderItem:
@@ -27,4 +30,5 @@ language:
       lore: [ ]
       displayname: " "
   hover:
-    text: "&7Klicke, um &6%languageDisplayname% &7auszuwählen"
+    languageChoose: "&7Klicke, um &6%languageDisplayname% &7auszuwählen"
+    adaptLanguageFromClient: "&7Klicke, um die Clientsprache &6%clientLanguageDisplayname% &7auszuwählen"

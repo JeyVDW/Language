@@ -10,11 +10,12 @@ public enum LanguageLanguageBungeeCord implements LanguageAbstract {
     languageCommandSyntaxChoose("language", "command", "syntax", "choose"),
     languageCommandSyntaxSet("language", "command", "syntax", "set"),
     languageCommandNoValidIsocode("language", "command", "noValidIsocode"),
+    languageCommandAlreadyChosen("language", "command", "alreadyChosen"),
     languageCommandChange("language", "command", "change"),
     languageCommandLanguageCollection("language", "command", "languageCollection"),
     languageCommandLanguageSelection("language", "command", "languageSelection"),
 
-    languageHoverText("language", "hover", "text");
+    languageHoverLanguageChoose("language", "hover", "languageChoose");
 
     private final String[] path;
 

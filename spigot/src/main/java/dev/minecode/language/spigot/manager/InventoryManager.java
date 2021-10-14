@@ -4,6 +4,7 @@ import dev.minecode.core.api.CoreAPI;
 import dev.minecode.core.api.object.CorePlugin;
 import dev.minecode.core.api.object.Language;
 import dev.minecode.language.api.LanguageAPI;
+import dev.minecode.language.api.object.LanguageDetails;
 import dev.minecode.language.spigot.object.HeadUtil;
 import dev.minecode.language.spigot.object.ItemBuilder;
 import dev.minecode.language.spigot.object.LanguageLanguageSpigot;
@@ -43,17 +44,18 @@ public class InventoryManager {
                     .setDisplayName(CoreAPI.getInstance().getReplaceManager(language, LanguageLanguageSpigot.languageGuiPlaceholderItemDisplayname).chatcolorAll().getMessage()).build());
         }
 
-        for (Language language2 : CoreAPI.getInstance().getLanguageManager().getAllLanguages(corePlugin)) {
-            String displayname = CoreAPI.getInstance().getReplaceManager(language2.getDisplayname())
-                    .language(language2, "").chatcolorAll().getMessage();
+        for (Language allLanguages : CoreAPI.getInstance().getLanguageManager().getAllLanguages(corePlugin)) {
+            LanguageDetails languageDetails = LanguageAPI.getInstance().getLanguageDetailsManager().getLanguageDetail(allLanguages);
+            String displayname = CoreAPI.getInstance().getReplaceManager(allLanguages.getDisplayname())
+                    .language(allLanguages, "").chatcolorAll().getMessage();
             List<String> lore = new ArrayList<>();
-            for (String s : language2.getLore())
-                lore.add(CoreAPI.getInstance().getReplaceManager(s).language(language2, "").chatcolorAll().getMessage());
+            for (String s : languageDetails.getLore())
+                lore.add(CoreAPI.getInstance().getReplaceManager(s).language(allLanguages, "").chatcolorAll().getMessage());
 
-            String skullTexture = language2.getTexture();
+            String skullTexture = languageDetails.getTexture();
             ItemStack itemStack = new ItemBuilder(HeadUtil.getHead(skullTexture, UUID.randomUUID(), "Skull")).setDisplayName(displayname).setLore(lore).build();
 
-            inventory.setItem(language2.getSlot() - 1, itemStack);
+            inventory.setItem(languageDetails.getSlot() - 1, itemStack);
         }
         return inventory;
     }
@@ -61,7 +63,8 @@ public class InventoryManager {
     private int getLanguageInventorySize() {
         int highest = 9;
         for (Language language : CoreAPI.getInstance().getLanguageManager().getAllLanguages(corePlugin)) {
-            int ici = language.getSlot();
+            LanguageDetails languageDetails = LanguageAPI.getInstance().getLanguageDetailsManager().getLanguageDetail(language);
+            int ici = languageDetails.getSlot();
             while (highest < ici) {
                 highest = highest + 9;
             }

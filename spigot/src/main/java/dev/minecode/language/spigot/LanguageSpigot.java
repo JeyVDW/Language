@@ -4,6 +4,7 @@ import dev.minecode.core.spigot.CoreSpigot;
 import dev.minecode.language.common.LanguageCommon;
 import dev.minecode.language.spigot.command.LanguageCommand;
 import dev.minecode.language.spigot.listener.InventoryListener;
+import dev.minecode.language.spigot.listener.PlayerListener;
 import dev.minecode.language.spigot.listener.PluginMessageListener;
 import dev.minecode.language.spigot.manager.InventoryManager;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -44,7 +45,7 @@ public class LanguageSpigot extends JavaPlugin {
 
     private void registerListeners() {
         new InventoryListener();
-        new InventoryListener();
+        new PlayerListener();
     }
 
     private void registerChannels() {

@@ -67,7 +67,7 @@ public class LanguageCommand extends Command implements TabExecutor {
                     baseComponent.setHoverEvent(
                             new HoverEvent(
                                     HoverEvent.Action.SHOW_TEXT,
-                                    CoreAPI.getInstance().getReplaceManager(coreExecuter.getLanguage(corePlugin), LanguageLanguageBungeeCord.languageHoverText)
+                                    CoreAPI.getInstance().getReplaceManager(coreExecuter.getLanguage(corePlugin), LanguageLanguageBungeeCord.languageHoverLanguageChoose)
                                             .language(CoreAPI.getInstance().getLanguageManager().getLanguage(corePlugin, isocode), "language")
                                             .chatcolorAll().getBaseMessage()));
                 }
@@ -86,6 +86,14 @@ public class LanguageCommand extends Command implements TabExecutor {
             }
 
             Language oldLanguage = coreExecuter.getLanguage(corePlugin);
+
+            if (language == oldLanguage) {
+                commandSender.sendMessage(CoreAPI.getInstance().getReplaceManager(coreExecuter.getLanguage(corePlugin), LanguageLanguageBungeeCord.languageCommandAlreadyChosen)
+                        .language(language, "language")
+                        .args("language", args, "arg").chatcolorAll().getBaseMessage());
+                return;
+            }
+
             coreExecuter.setLanguage(language.getIsocode());
             coreExecuter.save();
 

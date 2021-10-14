@@ -33,10 +33,10 @@
         <dependency>
             <groupId>dev.minecode.core</groupId>
             <artifactId>spigot</artifactId>
-            <version>0.1.0-Pre.71</version>
+            <version>0.1.0-Pre.80</version>
         </dependency>
 
-        <!-- Spigot -->
+        <!-- SpigotMC Spigot -->
         <dependency>
             <groupId>org.spigotmc</groupId>
             <artifactId>spigot</artifactId>

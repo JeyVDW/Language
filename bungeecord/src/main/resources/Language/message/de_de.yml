@@ -16,8 +16,9 @@ language:
       choose: "&8- &6/language &8- &7Wähle deine Sprache aus"
       set: "&8- &6/language [Isocode] &8- &7Stelle deine Sprache ein"
     noValidIsocode: "&cLanguage &8» &7Bitte gib einen gültigen Isocode an"
+    alreadyChosen: "&cLanguage &8» &7Du hast die Sprache &6%languageDisplayname% &7bereits ausgewählt"
     change: "&aLanguage &8» &7Du hast deine Sprache von &e%oldLanguageDisplayname% &7zu &6%languageDisplayname% &7geändert"
     languageSelection: "&9Language &8» &7Du kannst eine der folgenden Sprachen auswählen:"
     languageCollection: "&8- %languageDisplayname%"
   hover:
-    text: "&7Klicke, um &6%languageDisplayname% &7auszuwählen"
+    languageChoose: "&7Klicke, um &6%languageDisplayname% &7auszuwählen"
