@@ -76,6 +76,11 @@ public class LanguageCommand implements CommandExecutor, TabCompleter {
         }
 
         if (args.length == 1) {
+            if (args[0].equalsIgnoreCase("help")) {
+                syntaxMessage(commandSender, coreExecuter);
+                return true;
+            }
+
             String isocode = args[0];
             Language language;
             if ((language = CoreAPI.getInstance().getLanguageManager().getLanguage(corePlugin, isocode)) == null) {
@@ -103,9 +108,7 @@ public class LanguageCommand implements CommandExecutor, TabCompleter {
             return true;
         }
 
-        commandSender.sendMessage(CoreAPI.getInstance().getReplaceManager(coreExecuter.getLanguage(corePlugin), LanguageLanguageSpigot.languageCommandSyntaxInfo).chatcolorAll().getMessage());
-        commandSender.sendMessage(CoreAPI.getInstance().getReplaceManager(coreExecuter.getLanguage(corePlugin), LanguageLanguageSpigot.languageCommandSyntaxChoose).chatcolorAll().getMessage());
-        commandSender.sendMessage(CoreAPI.getInstance().getReplaceManager(coreExecuter.getLanguage(corePlugin), LanguageLanguageSpigot.languageCommandSyntaxSet).chatcolorAll().getMessage());
+        syntaxMessage(commandSender, coreExecuter);
         return true;
     }
 
@@ -120,17 +123,29 @@ public class LanguageCommand implements CommandExecutor, TabCompleter {
         }
 
         if (args.length == 1) {
+            list.add("help");
             for (Language language : CoreAPI.getInstance().getLanguageManager().getAllLanguages(corePlugin)) {
                 list.add(language.getIsocode());
             }
-            search = args[0].toLowerCase();
+            search = args[0];
         }
 
         for (String start : list) {
-            if (start.toLowerCase().startsWith(search))
+            if (start.toLowerCase().startsWith(search.toLowerCase()))
                 tab.add(start);
         }
 
         return tab;
+    }
+
+    private void syntaxMessage(CommandSender commandSender, CorePlayer corePlayer) {
+        if (!commandSender.hasPermission("language.use")) {
+            commandSender.sendMessage(CoreAPI.getInstance().getReplaceManager(corePlayer.getLanguage(corePlugin), LanguageLanguageSpigot.languageCommandNoPermission).chatcolorAll().getMessage());
+            return;
+        }
+
+        commandSender.sendMessage(CoreAPI.getInstance().getReplaceManager(corePlayer.getLanguage(corePlugin), LanguageLanguageSpigot.languageCommandSyntaxInfo).chatcolorAll().getMessage());
+        commandSender.sendMessage(CoreAPI.getInstance().getReplaceManager(corePlayer.getLanguage(corePlugin), LanguageLanguageSpigot.languageCommandSyntaxChoose).chatcolorAll().getMessage());
+        commandSender.sendMessage(CoreAPI.getInstance().getReplaceManager(corePlayer.getLanguage(corePlugin), LanguageLanguageSpigot.languageCommandSyntaxSet).chatcolorAll().getMessage());
     }
 }

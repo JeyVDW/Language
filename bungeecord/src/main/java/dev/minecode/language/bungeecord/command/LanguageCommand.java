@@ -11,6 +11,7 @@ import net.md_5.bungee.api.CommandSender;
 import net.md_5.bungee.api.chat.BaseComponent;
 import net.md_5.bungee.api.chat.ClickEvent;
 import net.md_5.bungee.api.chat.HoverEvent;
+import net.md_5.bungee.api.chat.hover.content.Text;
 import net.md_5.bungee.api.connection.ProxiedPlayer;
 import net.md_5.bungee.api.plugin.Command;
 import net.md_5.bungee.api.plugin.TabExecutor;
@@ -67,9 +68,9 @@ public class LanguageCommand extends Command implements TabExecutor {
                     baseComponent.setHoverEvent(
                             new HoverEvent(
                                     HoverEvent.Action.SHOW_TEXT,
-                                    CoreAPI.getInstance().getReplaceManager(coreExecuter.getLanguage(corePlugin), LanguageLanguageBungeeCord.languageHoverLanguageChoose)
+                                    new Text(CoreAPI.getInstance().getReplaceManager(coreExecuter.getLanguage(corePlugin), LanguageLanguageBungeeCord.languageHoverLanguageChoose)
                                             .language(CoreAPI.getInstance().getLanguageManager().getLanguage(corePlugin, isocode), "language")
-                                            .chatcolorAll().getBaseMessage()));
+                                            .chatcolorAll().getBaseMessage())));
                 }
                 commandSender.sendMessage(b);
             }
@@ -77,6 +78,11 @@ public class LanguageCommand extends Command implements TabExecutor {
         }
 
         if (args.length == 1) {
+            if (args[0].equalsIgnoreCase("help")) {
+                syntaxMessage(commandSender, coreExecuter);
+                return;
+            }
+
             String isocode = args[0];
             Language language;
             if ((language = CoreAPI.getInstance().getLanguageManager().getLanguage(corePlugin, isocode)) == null) {
@@ -104,9 +110,7 @@ public class LanguageCommand extends Command implements TabExecutor {
             return;
         }
 
-        commandSender.sendMessage(CoreAPI.getInstance().getReplaceManager(coreExecuter.getLanguage(corePlugin), LanguageLanguageBungeeCord.languageCommandSyntaxInfo).chatcolorAll().getBaseMessage());
-        commandSender.sendMessage(CoreAPI.getInstance().getReplaceManager(coreExecuter.getLanguage(corePlugin), LanguageLanguageBungeeCord.languageCommandSyntaxChoose).chatcolorAll().getBaseMessage());
-        commandSender.sendMessage(CoreAPI.getInstance().getReplaceManager(coreExecuter.getLanguage(corePlugin), LanguageLanguageBungeeCord.languageCommandSyntaxSet).chatcolorAll().getBaseMessage());
+        syntaxMessage(commandSender, coreExecuter);
     }
 
     @Override
@@ -132,5 +136,16 @@ public class LanguageCommand extends Command implements TabExecutor {
         }
 
         return tab;
+    }
+
+    private void syntaxMessage(CommandSender commandSender, CorePlayer corePlayer) {
+        if (!commandSender.hasPermission("language.use")) {
+            commandSender.sendMessage(CoreAPI.getInstance().getReplaceManager(corePlayer.getLanguage(corePlugin), LanguageLanguageBungeeCord.languageCommandNoPermission).chatcolorAll().getBaseMessage());
+            return;
+        }
+
+        commandSender.sendMessage(CoreAPI.getInstance().getReplaceManager(corePlayer.getLanguage(corePlugin), LanguageLanguageBungeeCord.languageCommandSyntaxInfo).chatcolorAll().getBaseMessage());
+        commandSender.sendMessage(CoreAPI.getInstance().getReplaceManager(corePlayer.getLanguage(corePlugin), LanguageLanguageBungeeCord.languageCommandSyntaxChoose).chatcolorAll().getBaseMessage());
+        commandSender.sendMessage(CoreAPI.getInstance().getReplaceManager(corePlayer.getLanguage(corePlugin), LanguageLanguageBungeeCord.languageCommandSyntaxSet).chatcolorAll().getBaseMessage());
     }
 }
