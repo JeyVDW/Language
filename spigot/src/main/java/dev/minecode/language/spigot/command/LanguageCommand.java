@@ -32,8 +32,7 @@ public class LanguageCommand implements CommandExecutor, TabCompleter {
         CorePlayer coreExecuter = CoreAPI.getInstance().getPlayerManager().getPlayer(commandSender.getName());
 
         if (!commandSender.hasPermission("language.use")) {
-            commandSender.sendMessage(CoreAPI.getInstance().getReplaceManager(coreExecuter.getLanguage(corePlugin), LanguageLanguageSpigot.languageCommandNoPermission)
-                    .args(command.getName(), args, "arg").chatcolorAll().getMessage());
+            syntaxMessage(commandSender, coreExecuter);
             return true;
         }
 

@@ -38,8 +38,7 @@ public class LanguageCommand extends Command implements TabExecutor {
         CorePlayer coreExecuter = CoreAPI.getInstance().getPlayerManager().getPlayer(commandSender.getName());
 
         if (!commandSender.hasPermission("language.use")) {
-            commandSender.sendMessage(CoreAPI.getInstance().getReplaceManager(coreExecuter.getLanguage(corePlugin), LanguageLanguageBungeeCord.languageCommandNoPermission)
-                    .args("language", args, "arg").chatcolorAll().getBaseMessage());
+            syntaxMessage(commandSender, coreExecuter);
             return;
         }
 

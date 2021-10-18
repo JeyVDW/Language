@@ -49,16 +49,8 @@ public class Reflector {
     }
 
     public static Method getMethod(Class<?> clazz, String name) {
-        Method[] var2 = clazz.getMethods();
-        int var3 = var2.length;
-
-        for (int var4 = 0; var4 < var3; ++var4) {
-            Method m = var2[var4];
-            if (m.getName().equals(name)) {
-                return m;
-            }
-        }
-
+        for (Method m : clazz.getMethods())
+            if (m.getName().equals(name)) return m;
         return null;
     }
 
@@ -73,16 +65,11 @@ public class Reflector {
     }
 
     public static Constructor<?> getConstructor(Class<?> clazz, int numParams) {
-        Constructor[] var2 = clazz.getConstructors();
-        int var3 = var2.length;
-
-        for (int var4 = 0; var4 < var3; ++var4) {
-            Constructor<?> constructor = var2[var4];
+        for (Constructor<?> constructor : clazz.getConstructors()) {
             if (constructor.getParameterTypes().length == numParams) {
                 return constructor;
             }
         }
-
         return null;
     }
 

@@ -22,15 +22,9 @@ public class PlayerListener implements Listener {
     public void handlePlayerJoin(PostLoginEvent event) {
         ProxiedPlayer proxiedPlayer = event.getPlayer();
 
-        if (LanguageAPI.getInstance().isForceOpenInventory()) {
-            if (CoreAPI.getInstance().getPlayerManager().getPlayer(proxiedPlayer.getUniqueId()).isLanguageEmpty()) {
-                ProxyServer.getInstance().getScheduler().schedule(LanguageBungeeCord.getInstance(), new Runnable() {
-                    @Override
-                    public void run() {
-                        PluginMessageHelper.openLanguageChangeGUI(proxiedPlayer);
-                    }
-                }, 1, TimeUnit.SECONDS);
-            }
-        }
+        if (LanguageAPI.getInstance().isForceOpenInventory())
+            if (CoreAPI.getInstance().getPlayerManager().getPlayer(proxiedPlayer.getUniqueId()).isLanguageEmpty())
+                ProxyServer.getInstance().getScheduler().schedule(LanguageBungeeCord.getInstance(), () ->
+                        PluginMessageHelper.openLanguageChangeGUI(proxiedPlayer), 1, TimeUnit.SECONDS);
     }
 }

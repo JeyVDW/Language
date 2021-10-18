@@ -28,16 +28,10 @@ public class PlayerListener implements Listener {
     public void handlePlayerJoin(PlayerJoinEvent event) {
         Player player = event.getPlayer();
 
-        if (LanguageAPI.getInstance().isForceOpenInventory()) {
-            if (CoreAPI.getInstance().getPlayerManager().getPlayer(player.getUniqueId()).isLanguageEmpty()) {
-                Bukkit.getScheduler().runTaskLater(LanguageSpigot.getInstance(), new Runnable() {
-                    @Override
-                    public void run() {
-                        player.openInventory(LanguageSpigot.getInstance().getInventoryManager().getLanguageInventory().get(CoreAPI.getInstance().getLanguageManager().getDefaultLanguage(LanguageAPI.getInstance().getThisCorePlugin())));
-                    }
-                }, 10);
-            }
-        }
+        if (LanguageAPI.getInstance().isForceOpenInventory())
+            if (CoreAPI.getInstance().getPlayerManager().getPlayer(player.getUniqueId()).isLanguageEmpty())
+                Bukkit.getScheduler().runTaskLater(LanguageSpigot.getInstance(), () ->
+                        player.openInventory(LanguageSpigot.getInstance().getInventoryManager().getLanguageInventory().get(CoreAPI.getInstance().getLanguageManager().getDefaultLanguage(LanguageAPI.getInstance().getThisCorePlugin()))), 10);
     }
 
     @EventHandler
