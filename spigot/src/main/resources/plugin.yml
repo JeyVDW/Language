@@ -4,7 +4,7 @@ description: A plugin to manage the language
 
 main: dev.minecode.language.spigot.LanguageSpigot
 version: 0.1.0-Pre.1
-api-version: 1.17
+api-version: 1.18
 
 author: MineCodeDEV
 authors:

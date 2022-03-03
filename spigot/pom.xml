@@ -16,8 +16,8 @@
 
     <repositories>
         <repository>
-            <id>spigot-repo</id>
-            <url>https://hub.spigotmc.org/nexus/content/groups/public/</url>
+            <id>minecraft-repo</id>
+            <url>https://libraries.minecraft.net/</url>
         </repository>
     </repositories>
 
@@ -33,16 +33,14 @@
         <dependency>
             <groupId>dev.minecode.core</groupId>
             <artifactId>spigot</artifactId>
-            <version>0.1.0-Pre.80</version>
+            <version>0.1.0-Pre.81</version>
         </dependency>
 
-        <!-- SpigotMC Spigot -->
+        <!-- Mojang Authlib -->
         <dependency>
-            <groupId>org.spigotmc</groupId>
-            <artifactId>spigot</artifactId>
-            <version>1.17.1-R0.1-SNAPSHOT</version>
-            <scope>system</scope>
-            <systemPath>${basedir}/lib/spigot-1.17.1.jar</systemPath>
+            <groupId>com.mojang</groupId>
+            <artifactId>authlib</artifactId>
+            <version>1.5.21</version>
         </dependency>
     </dependencies>
 
@@ -108,8 +106,8 @@
     </build>
 
     <properties>
-        <maven.compiler.source>8</maven.compiler.source>
-        <maven.compiler.target>8</maven.compiler.target>
+        <maven.compiler.source>17</maven.compiler.source>
+        <maven.compiler.target>17</maven.compiler.target>
     </properties>
 
 </project>
