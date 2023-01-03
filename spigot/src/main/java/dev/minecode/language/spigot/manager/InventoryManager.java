@@ -9,6 +9,7 @@ import dev.minecode.language.spigot.object.HeadUtil;
 import dev.minecode.language.spigot.object.ItemBuilder;
 import dev.minecode.language.spigot.object.LanguageLanguageSpigot;
 import org.bukkit.Bukkit;
+import org.bukkit.Material;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 
@@ -36,12 +37,11 @@ public class InventoryManager {
     private Inventory createLanguageInventory(Language language) {
         Inventory inventory = Bukkit.createInventory(null, languageInventorySize, CoreAPI.getInstance().getReplaceManager(language, LanguageLanguageSpigot.languageGuiTitle).chatcolorAll().getMessage());
 
-//        for (int i = 0; i < languageInventorySize; i++) {
-//            inventory.setItem(i, new ItemBuilder(Material.valueOf(CoreAPI.getInstance().getLanguageManager().getString(language, LanguageLanguageSpigot.languageGuiPlaceholderItemMaterial)),
-//                    (short) CoreAPI.getInstance().getLanguageManager().getInt(language, LanguageLanguageSpigot.languageGuiPlaceholderItemSubID))
-//                    .setLore(CoreAPI.getInstance().getLanguageManager().getStringList(language, LanguageLanguageSpigot.languageGuiPlaceholderItemLore))
-//                    .setDisplayName(CoreAPI.getInstance().getReplaceManager(language, LanguageLanguageSpigot.languageGuiPlaceholderItemDisplayname).chatcolorAll().getMessage()).build());
-//        }
+        for (int i = 0; i < languageInventorySize; i++) {
+            inventory.setItem(i, new ItemBuilder(Material.valueOf(CoreAPI.getInstance().getLanguageManager().getString(language, LanguageLanguageSpigot.languageGuiPlaceholderItemMaterial)))
+                    .setLore(CoreAPI.getInstance().getLanguageManager().getStringList(language, LanguageLanguageSpigot.languageGuiPlaceholderItemLore))
+                    .setDisplayName(CoreAPI.getInstance().getReplaceManager(language, LanguageLanguageSpigot.languageGuiPlaceholderItemDisplayname).chatcolorAll().getMessage()).build());
+        }
 
         for (Language allLanguages : CoreAPI.getInstance().getLanguageManager().getLanguages(corePlugin)) {
             LanguageDetails languageDetails = LanguageAPI.getInstance().getLanguageDetailsManager().getLanguageDetail(allLanguages);

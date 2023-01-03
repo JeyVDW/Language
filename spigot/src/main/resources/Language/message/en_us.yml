@@ -26,7 +26,6 @@ language:
     title: "&5Language"
     placeholderItem:
       material: "GRAY_STAINED_GLASS_PANE"
-      subID: 7
       lore: [ ]
       displayname: " "
   hover:

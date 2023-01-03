@@ -19,7 +19,6 @@ public enum LanguageLanguageSpigot implements LanguageAbstract {
 
     languageGuiTitle("language", "gui", "title"),
     languageGuiPlaceholderItemMaterial("language", "gui", "placeholderItem", "material"),
-    languageGuiPlaceholderItemSubID("language", "gui", "placeholderItem", "subID"),
     languageGuiPlaceholderItemLore("language", "gui", "placeholderItem", "lore"),
     languageGuiPlaceholderItemDisplayname("language", "gui", "placeholderItem", "displayname"),
 

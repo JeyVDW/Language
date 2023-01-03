@@ -20,14 +20,6 @@ public class ItemBuilder {
         itemMeta = item.getItemMeta();
     }
 
-    /**
-     * @deprecated
-     */
-    public ItemBuilder(Material mat, short subID) {
-        item = new ItemStack(mat, 1, subID);
-        itemMeta = item.getItemMeta();
-    }
-
     public ItemBuilder(ItemStack is) {
         item = is;
         itemMeta = is.getItemMeta();
