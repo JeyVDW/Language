@@ -14,7 +14,7 @@ public class LanguageDetailsManagerProvider implements LanguageDetailsManager {
     private final HashMap<Language, LanguageDetails> languageDetails = new HashMap<>();
 
     public LanguageDetailsManagerProvider() {
-        for (Language language : CoreAPI.getInstance().getLanguageManager().getAllLanguages(LanguageAPI.getInstance().getThisCorePlugin()))
+        for (Language language : CoreAPI.getInstance().getLanguageManager().getLanguages(LanguageAPI.getInstance().getThisCorePlugin()))
             languageDetails.put(language, new LanguageDetailsProvider(language));
     }
 

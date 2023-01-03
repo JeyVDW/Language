@@ -29,7 +29,7 @@ public class LanguageAPIProvider extends LanguageAPI {
         fileManager = new FileManagerProvider();
         languageDetailsManager = new LanguageDetailsManagerProvider();
 
-        ConfigurationNode configNode = fileManager.getConfig().getConf();
+        ConfigurationNode configNode = fileManager.getConfig().getRoot();
         usingGUI = configNode.node("usingGUI").getBoolean();
         forceOpenInventory = configNode.node("forceOpenInventory").getBoolean();
     }

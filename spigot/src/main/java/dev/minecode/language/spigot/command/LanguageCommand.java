@@ -55,7 +55,7 @@ public class LanguageCommand implements CommandExecutor, TabCompleter {
 
             String repeat = CoreAPI.getInstance().getReplaceManager(coreExecuter.getLanguage(corePlugin), LanguageLanguageSpigot.languageCommandLanguageCollection).chatcolorAll().getMessage();
             String isocode;
-            for (Language language : CoreAPI.getInstance().getLanguageManager().getAllLanguages(corePlugin)) {
+            for (Language language : CoreAPI.getInstance().getLanguageManager().getLanguages(corePlugin)) {
                 isocode = language.getIsocode();
 
                 BaseComponent[] baseMessage = CoreAPI.getInstance().getReplaceManager(repeat)
@@ -123,7 +123,7 @@ public class LanguageCommand implements CommandExecutor, TabCompleter {
 
         if (args.length == 1) {
             list.add("help");
-            for (Language language : CoreAPI.getInstance().getLanguageManager().getAllLanguages(corePlugin)) {
+            for (Language language : CoreAPI.getInstance().getLanguageManager().getLanguages(corePlugin)) {
                 list.add(language.getIsocode());
             }
             search = args[0];

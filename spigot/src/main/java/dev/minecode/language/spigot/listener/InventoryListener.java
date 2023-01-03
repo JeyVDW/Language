@@ -59,7 +59,7 @@ public class InventoryListener implements Listener {
         ItemMeta itemMeta = itemStack.getItemMeta();
         if (itemStack.getType() != Material.PLAYER_HEAD)
             return null;
-        for (Language language : CoreAPI.getInstance().getLanguageManager().getAllLanguages(corePlugin)) {
+        for (Language language : CoreAPI.getInstance().getLanguageManager().getLanguages(corePlugin)) {
             LanguageDetails languageDetails = LanguageAPI.getInstance().getLanguageDetailsManager().getLanguageDetail(language);
             if (languageDetails.getTexture().equals(HeadUtil.getTexture(itemMeta)))
                 return language;

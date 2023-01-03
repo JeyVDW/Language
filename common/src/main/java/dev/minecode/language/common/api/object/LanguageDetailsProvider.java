@@ -22,7 +22,7 @@ public class LanguageDetailsProvider implements LanguageDetails {
     }
 
     private void makeInstances() {
-        ConfigurationNode configNode = LanguageAPI.getInstance().getFileManager().getConfig().getConf().node("languageDetails", this.language.getIsocode());
+        ConfigurationNode configNode = LanguageAPI.getInstance().getFileManager().getConfig().getRoot().node("languageDetails", this.language.getIsocode());
 
         slot = configNode.node("slot").getInt();
         try {

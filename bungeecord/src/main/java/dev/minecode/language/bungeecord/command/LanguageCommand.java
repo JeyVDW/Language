@@ -58,7 +58,7 @@ public class LanguageCommand extends Command implements TabExecutor {
 
             String repeat = CoreAPI.getInstance().getReplaceManager(coreExecuter.getLanguage(corePlugin), LanguageLanguageBungeeCord.languageCommandLanguageCollection).chatcolorAll().getMessage();
             String isocode;
-            for (Language language : CoreAPI.getInstance().getLanguageManager().getAllLanguages(corePlugin)) {
+            for (Language language : CoreAPI.getInstance().getLanguageManager().getLanguages(corePlugin)) {
                 isocode = language.getIsocode();
                 BaseComponent[] b = CoreAPI.getInstance().getReplaceManager(repeat).language(CoreAPI.getInstance().getLanguageManager().getLanguage(corePlugin, isocode), "language").chatcolorAll().getBaseMessage();
                 for (BaseComponent baseComponent : b) {
@@ -123,7 +123,7 @@ public class LanguageCommand extends Command implements TabExecutor {
         }
 
         if (args.length == 1) {
-            for (Language language : CoreAPI.getInstance().getLanguageManager().getAllLanguages(corePlugin)) {
+            for (Language language : CoreAPI.getInstance().getLanguageManager().getLanguages(corePlugin)) {
                 list.add(language.getIsocode());
             }
             search = args[0].toLowerCase();

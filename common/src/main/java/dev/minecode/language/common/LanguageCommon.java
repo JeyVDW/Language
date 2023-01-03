@@ -16,7 +16,7 @@ public class LanguageCommon {
         CorePlugin corePlugin = LanguageAPI.getInstance().getThisCorePlugin();
         UpdateManager updateManager = CoreAPI.getInstance().getUpdateManager(corePlugin);
 
-        if (updateManager.updateAvailable())
+        if (updateManager.checkUpdateAvailable())
             System.out.println("[" + corePlugin.getName() + "] There is a newer Version available! You can download it at " + updateManager.getReleaseURL(updateManager.getMatchingRelease()));
     }
 
